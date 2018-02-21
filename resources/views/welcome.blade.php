@@ -85,6 +85,7 @@
                 <div class="links">
                     <a href="https://naxpansion.com">Project By Naxpansion</a>
                 </div>
+                <sub>This page took {{ (microtime(true) - LARAVEL_START) }} seconds to render</sub>
             </div>
         </div>
     </body>
