@@ -18,6 +18,17 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
+            $table->integer('role')->default(2);
+            $table->string('nric')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('gender')->nullable();
+            $table->string('bank_name')->nullable();
+            $table->string('bank_account_no')->nullable();
+            $table->string('full_address')->nullable();
+            $table->string('type')->default('agent');
+            $table->string('agent_code')->nullable();
+            $table->string('commision_rate')->nullable();
+            $table->string('is_active')->default(1);
             $table->rememberToken();
             $table->timestamps();
         });
