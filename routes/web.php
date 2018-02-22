@@ -12,7 +12,23 @@
 */
 
 Route::get('/', function () {
-    return view('auth.login');
+
+	if(Auth::guest())
+	{
+		return view('auth.login');
+	}
+	else
+	{
+		if (Auth::user()->role == '1')
+        {
+            return redirect('/admin');
+        }
+        else
+        {
+            return redirect('/agent');
+        }
+	}
+    
 });
 
 Auth::routes();
@@ -21,9 +37,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::middleware(['isadmin'])->group(function () {
     
-    Route::get('/admin', function () {
-	    return 'admin';
-	});
+    Route::get('/admin', 'DashboardController@index');
     
 });
 
