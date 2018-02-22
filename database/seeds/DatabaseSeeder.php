@@ -28,7 +28,8 @@ class UserTableSeeder extends Seeder {
             'name' => 'Administrator',
         	'email' => 'admin@proplenx.com',
         	'password' => bcrypt('123456'),
-        	'type' => 'Administrator'
+        	'type' => 'Administrator',
+            'role' => 1
 
     	));
     }
