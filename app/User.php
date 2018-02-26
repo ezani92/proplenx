@@ -9,6 +9,8 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    protected $dates = ['last_login'];
+
     /**
      * The attributes that are mass assignable.
      *
@@ -26,4 +28,11 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function generateID($user_id)
+    {
+        $number = sprintf('%04d', $user_id);
+
+        return 'A'.$number;
+    }
 }

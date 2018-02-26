@@ -29,6 +29,7 @@ class CreateUsersTable extends Migration
             $table->string('agent_code')->nullable();
             $table->string('commision_rate')->nullable();
             $table->string('is_active')->default(1);
+            $table->timestamp('last_login');
             $table->rememberToken();
             $table->timestamps();
         });

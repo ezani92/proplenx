@@ -22364,5 +22364,7 @@ fieldset[disabled] .full-calendar .fc-button:hover {
     }
 }
 
+div.dataTables_wrapper div.dataTables_paginate { margin: 0; white-space: nowrap; text-align: right; margin-top: 20px; margin-bottom: -15px; }
+div.dataTables_wrapper div.dataTables_filter { text-align: right; margin-bottom: 25px; }
 
 /* Localized */
