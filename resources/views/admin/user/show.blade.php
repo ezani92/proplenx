@@ -71,7 +71,7 @@
                         @elseif($user->is_active == 0)
                         <a href="{{ url('admin/user/'.$user->id.'/activated') }}" onclick="return activated(this.href)" class="btn btn-block btn-success">Activate Account</a>
                         @endif
-                        <button class="btn btn-block btn-danger">Permenently Delete Account</button>
+                        <a href="{{ url('admin/user/'.$user->id.'/delete') }}" onclick="return deleteUser(this.href)" class="btn btn-block btn-danger">Permenently Delete Account</a>
                     </div>
                 </div>
             </div>
@@ -105,6 +105,23 @@
                     confirmButtonColor: '#3085d6',
                     cancelButtonColor: '#d33',
                     confirmButtonText: 'Yes, activated it!'
+                }).then(function() {
+                    window.location.replace(url);
+                })
+            
+                return false;
+            }
+
+            function deleteUser(url) {
+            
+                swal({
+                    title: 'Are you sure?',
+                    text: "All submission related to this negotiator also will be deleted",
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete this negotiator!'
                 }).then(function() {
                     window.location.replace(url);
                 })

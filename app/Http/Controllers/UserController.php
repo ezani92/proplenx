@@ -174,7 +174,13 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::find($id);
+        $user->delete();
+
+        Session::flash('message', 'Account successfuly deleted. Related Submission Also deleted.'); 
+        Session::flash('alert-class', 'alert-success');
+
+        return redirect('admin/user');
     }
 
     public function deactivated($id)

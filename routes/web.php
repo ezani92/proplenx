@@ -47,9 +47,12 @@ Route::middleware(['isadmin'])->group(function () {
     Route::get('/admin/user/{user_id}', 'UserController@show');
     Route::get('/admin/user/{user_id}/edit', 'UserController@edit');
     Route::put('/admin/user/{user_id}', 'UserController@update');
-    
     Route::get('/admin/user/{user_id}/deactivated', 'UserController@deactivated');
     Route::get('/admin/user/{user_id}/activated', 'UserController@activated');
+    Route::get('/admin/user/{user_id}/delete', 'UserController@destroy');
+
+    Route::get('/admin/annoucement', 'AnnoucementController@index');
+    Route::post('/admin/annoucement', 'AnnoucementController@store');
 });
 
 Route::middleware(['isagent'])->group(function () {

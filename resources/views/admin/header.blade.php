@@ -59,17 +59,8 @@
                                                 <div class="content">
                                                     <ul>
                                                         @foreach(Auth::user()->unreadNotifications as $notification)
-                                                        <li class="notification notification-unread">
-                                                            <a href="#">
-                                                                <div class="image"><img src="assets/img/avatar2.png" alt="Avatar"></div>
-                                                                <div class="notification-info">
-                                                                    <div class="text"><span class="user-name">Jessica Caruso</span> accepted your invitation to join the team.</div>
-                                                                    <span class="date">2 min ago</span>
-                                                                </div>
-                                                            </a>
-                                                        </li>
+                                                            @include('notifications.'.snake_case(class_basename($notification->type)))
                                                         @endforeach
-                                                        
                                                     </ul>
                                                 </div>
                                             </div>
@@ -110,7 +101,7 @@
                                             <li class="{{ Request::is('admin/user/create') ? 'active' : '' }}"><a href="{{ url('admin/user/create') }}">Create New User</a></li>
                                         </ul>
                                     </li>
-                                    <li class="{{ Request::is('admin/announcement*') ? 'active' : '' }}">
+                                    <li class="{{ Request::is('admin/annoucement') ? 'active' : '' }}">
                                         <a href="{{ url('admin/annoucement') }}"><i class="icon mdi mdi-notifications"></i><span>Announcement</span></a>
                                     </li>
                                     <li class="{{ Request::is('admin/settings*') ? 'active' : '' }}">
