@@ -48,7 +48,7 @@ class LoginController extends Controller
         
         else if (\Auth::user()->role == '2')
         {
-            return '/agent';
+            return '/negotiator';
         }
     }
 }

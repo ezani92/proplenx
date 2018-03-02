@@ -25,7 +25,7 @@ Route::get('/', function () {
         }
         else
         {
-            return redirect('/agent');
+            return redirect('/negotiator');
         }
 	}
     
@@ -55,10 +55,12 @@ Route::middleware(['isadmin'])->group(function () {
     Route::post('/admin/annoucement', 'AnnoucementController@store');
 });
 
-Route::middleware(['isagent'])->group(function () {
+Route::middleware(['isnegotiator'])->group(function () {
     
-    Route::get('/agent', function () {
-	    return 'agent';
-	});
+    Route::get('/negotiator', 'DashboardController@index');
+
+    Route::get('/negotiator/submission/create', 'SubmissionController@create');
     
 });
+
+Route::post('api/notification/read/{notification_id}', 'ApiController@notificationRead');

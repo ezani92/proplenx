@@ -29,7 +29,7 @@ class RedirectIfAuthenticated
             }
             else
             {
-                return redirect('/agent');
+                return redirect('/negotiator');
             }
         }
 

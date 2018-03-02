@@ -15,7 +15,7 @@
         <![endif]-->
         <link rel="stylesheet" type="text/css" href="{{ secure_asset('assets/lib/jquery.vectormap/jquery-jvectormap-1.2.2.css') }}"/>
         <link rel="stylesheet" type="text/css" href="{{ secure_asset('assets/lib/jqvmap/jqvmap.min.css') }}"/>
-        <link rel="stylesheet" type="text/css" href="{{ secure_asset('assets/lib/datetimepicker/css/bootstrap-datetimepicker.min.css') }}"/>
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.min.css"/>
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.2/sweetalert2.min.css">
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css">
         <link rel="stylesheet" href="{{ secure_asset('assets/css/style.css') }}" type="text/css"/>
@@ -24,7 +24,7 @@
         <div class="be-wrapper be-fixed-sidebar">
             <nav class="navbar navbar-default navbar-fixed-top be-top-header">
                 <div class="container-fluid">
-                    <div class="navbar-header"><a href="{{ url('/admin') }}" class="navbar-brand"></a>
+                    <div class="navbar-header"><a href="{{ url('/negotiator') }}" class="navbar-brand"></a>
                     </div>
                     <div class="be-right-navbar">
                         <ul class="nav navbar-nav navbar-right be-user-nav">
@@ -37,7 +37,7 @@
                                             <div class="user-position online">Online</div>
                                         </div>
                                     </li>
-                                    <li><a href="{{ url('admin/account') }}"><span class="icon mdi mdi-face"></span> Account</a></li>
+                                    <li><a href="{{ url('negotiator/account') }}"><span class="icon mdi mdi-face"></span> Account</a></li>
                                     <li><a href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();"><span class="icon mdi mdi-power"></span> Logout</a></li>
@@ -84,31 +84,18 @@
                             <div class="left-sidebar-content">
                                 <ul class="sidebar-elements">
                                     <li class="divider">Menu</li>
-                                    <li class="{{ Request::is('admin') ? 'active' : '' }}">
+                                    <li class="{{ Request::is('negotiator') ? 'active' : '' }}">
                                         <a href="{{ url('/') }}"><i class="icon mdi mdi-home"></i><span>Dashboard</span></a>
                                     </li>
-                                    <li class="parent {{ Request::is('admin/submission*') ? 'active' : '' }}">
+                                    <li class="parent {{ Request::is('negotiator/submission*') ? 'active' : '' }}">
                                         <a href="#"><i class="icon mdi mdi-collection-text"></i><span>Submission</span></a>
                                         <ul class="sub-menu">
-                                            <li><a href="{{ url('admin/submission') }}">All Submission</a></li>
+                                            <li><a href="{{ url('negotiator/submission') }}">My Submission</a></li>
+                                            <li class="{{ Request::is('negotiator/submission/create') ? 'active' : '' }}"><a href="{{ url('negotiator/submission/create') }}">Create Submission</a></li>
                                         </ul>
                                     </li>
-                                    <li class="{{ Request::is('admin/report*') ? 'active' : '' }}">
-                                        <a href="{{ url('admin/report') }}"><i class="icon mdi mdi-chart"></i><span>Report</span></a>
-                                    </li>
-                                    <li class="divider">Admin Action</li>
-                                    <li class="parent {{ Request::is('admin/user*') ? 'active' : '' }}">
-                                        <a href="#"><i class="icon mdi mdi-face"></i><span>User Management</span></a>
-                                        <ul class="sub-menu">
-                                            <li class="{{ Request::is('admin/user') ? 'active' : '' }}"><a href="{{ url('admin/user') }}">All User List</a></li>
-                                            <li class="{{ Request::is('admin/user/create') ? 'active' : '' }}"><a href="{{ url('admin/user/create') }}">Create New User</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="{{ Request::is('admin/annoucement') ? 'active' : '' }}">
-                                        <a href="{{ url('admin/annoucement') }}"><i class="icon mdi mdi-notifications"></i><span>Announcement</span></a>
-                                    </li>
-                                    <li class="{{ Request::is('admin/settings*') ? 'active' : '' }}">
-                                        <a href="{{ url('admin/settings') }}"><i class="icon mdi mdi-wrench"></i><span>Site Settings</span></a>
+                                    <li class="{{ Request::is('negotiator/report*') ? 'active' : '' }}">
+                                        <a href="{{ url('negotiator/report') }}"><i class="icon mdi mdi-chart"></i><span>Report</span></a>
                                     </li>
                                 </ul>
                             </div>
