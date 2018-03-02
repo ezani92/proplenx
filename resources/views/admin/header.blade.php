@@ -59,9 +59,6 @@
                                                 <div class="content">
                                                     <ul>
                                                         @foreach(Auth::user()->unreadNotifications as $notification)
-                                                            @include('notifications.unread.'.snake_case(class_basename($notification->type)))
-                                                        @endforeach
-                                                        @foreach(Auth::user()->readNotifications as $notification)
                                                             <li class="notification notification-unread">
                                                                 <a href="#">
                                                                     <div class="image"><img src="{{ secure_asset('assets/img/annoucement.png') }}" alt="Avatar"></div>
@@ -72,6 +69,17 @@
                                                                 </a>
                                                             </li>
 
+                                                        @endforeach
+                                                        @foreach(Auth::user()->readNotifications as $notification)
+                                                            <li class="notification">
+                                                                <a href="#">
+                                                                    <div class="image"><img src="{{ secure_asset('assets/img/annoucement.png') }}" alt="Avatar"></div>
+                                                                    <div class="notification-info">
+                                                                        <div class="text"><span class="user-name">Annoucement!</span> {{ $notification->data['title'] }} - {{ $notification->data['body'] }}</div>
+                                                                        <span class="date">{{ $notification->created_at->diffForHumans() }}</span>
+                                                                    </div>
+                                                                </a>
+                                                            </li>
                                                         @endforeach
                                                     </ul>
                                                 </div>
