@@ -71,7 +71,7 @@
 
                                                         @endforeach
                                                         @foreach(Auth::user()->readNotifications as $notification)
-                                                            <li class="notification">
+                                                            <li class="notification s"> 
                                                                 <a href="#">
                                                                     <div class="image"><img src="{{ secure_asset('assets/img/annoucement.png') }}" alt="Avatar"></div>
                                                                     <div class="notification-info">
