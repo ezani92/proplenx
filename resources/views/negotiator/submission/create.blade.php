@@ -9,6 +9,7 @@
                     @endif
 
                     <div class="row">
+                        <form method="post" action="{{ url('negotiator/submission') }}">
                         <div class="col-md-12">
                             <div class="row">
                                 <div class="col-md-12">
@@ -30,26 +31,19 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group xs-pt-10">
                                                         <label>Co-Agency</label>
-                                                        <select class="form-control" name="co_agency">
+                                                        <select class="form-control" name="co_agency" id="co_agency">
                                                             <option value="1">No</option>
                                                             <option value="2">Internal CoAgency</option>
                                                             <option value="3">Proplenx Collect Deposit. Third Party To Invoice Proplenx</option>
                                                             <option value="4">CoNegotiator Collect Deposit. Proplenx To Invoice CoNegotiator</option>
+                                                            <option value="5">Internal Referral</option>
+                                                            <option value="6">External Referral</option>
                                                         </select>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group xs-pt-10">
-                                                        <label>Referral</label>
-                                                        <select class="form-control" name="referral">
-                                                            <option value="1">Internal Referral</option>
-                                                            <option value="2">External Referral</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
+                                                <div class="col-md-12">
                                                     <div class="form-group xs-pt-10">
                                                         <label>Status</label>
                                                         <select class="form-control" name="referral">
@@ -175,8 +169,384 @@
                                             </div>
                                         </div>
                                     </div>
+
+                                    <div class="panel panel-border-color panel-border-color-primary">
+                                        <div class="panel-heading">Landlord / Vendor Details</div>
+                                        <div class="panel-body">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group xs-pt-10">
+                                                        <label>Fullname / Company Name</label>
+                                                        <input type="text" name="landlord_vendor_name" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group xs-pt-10">
+                                                        <label>NRIC / Company No</label>
+                                                        <input type="text" name="landlord_vendor_ic_no" class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group xs-pt-10">
+                                                        <label>Correspondence Address</label>
+                                                        <textarea class="form-control" name="landlord_vendor_address"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group xs-pt-10">
+                                                        <label>Bank Name</label>
+                                                        <input type="text" name="landlord_vendor_bank_name" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group xs-pt-10">
+                                                        <label>Bank Account No.</label>
+                                                        <input type="text" name="landlord_vendor_acc_no" class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="panel panel-border-color panel-border-color-primary">
+                                        <div class="panel-heading">Tenant / Purchaser Details</div>
+                                        <div class="panel-body">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group xs-pt-10">
+                                                        <label>Fullname / Company Name</label>
+                                                        <input type="text" name="landlord_vendor_name" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group xs-pt-10">
+                                                        <label>NRIC / Company No</label>
+                                                        <input type="text" name="landlord_vendor_ic_no" class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group xs-pt-10">
+                                                        <label>Address</label>
+                                                        <textarea class="form-control" name="landlord_vendor_address"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group xs-pt-10">
+                                                        <label>Bank Name</label>
+                                                        <input type="text" name="landlord_vendor_bank_name" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group xs-pt-10">
+                                                        <label>Bank Account No.</label>
+                                                        <input type="text" name="landlord_vendor_acc_no" class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div style="display: none;" id="internal-cobroke" class="panel panel-border-color panel-border-color-primary">
+                                        <div class="panel-heading">Internal Cobroke</div>
+                                        <div class="panel-body">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group xs-pt-10">
+                                                        <label>Negotiator Name</label>
+                                                        <select class="form-control" name="coagent_id" id="coagent_id">
+                                                            <option>Select</option>
+                                                            @foreach($users as $user)
+                                                            <option value="{{ $user->id }}" data-rate="{{ $user->commision_rate }}">{{ $user->name }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group xs-pt-10">
+                                                        <label>CoAgent Portion Type</label>
+                                                        <select class="form-control" name="coagent_portion_type" id="coagent_portion_type">
+                                                            <option value="1">Fixed Amount (RM)</option>
+                                                            <option value="2">Percentage</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group xs-pt-10">
+                                                        <label>CoAgent Portion Value</label>
+                                                        <input type="number" step="0.01" name="coagent_portion_value" id="coagent_portion_value" placeholder="no need to type RM or % (if type percentage)" class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group xs-pt-10">
+                                                        <label>GST by Landlord/ Vendor</label>
+                                                        <input type="text" name="coagent_gst_by_landlord" id="coagent_gst_by_landlord" class="form-control" readonly="true">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div style="display: none;" id="external-cobroke-1" class="panel panel-border-color panel-border-color-primary">
+                                        <div class="panel-heading">External Cobroke - Proplenx collected deposit, 3rd party to invoice Proplenx</div>
+                                        <div class="panel-body">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group xs-pt-10">
+                                                        <label>CoAgent Company Name</label>
+                                                        <input type="text" name="coagent_company_name" class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group xs-pt-10">
+                                                        <label>CoAgent Company Portion Type</label>
+                                                        <select class="form-control" name="coagent_company_portion_type" id="coagent_company_portion_type">
+                                                            <option value="1">Fixed Amount (RM)</option>
+                                                            <option value="2">Percentage</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group xs-pt-10">
+                                                        <label>CoAgent Company Portion Value</label>
+                                                        <input type="number" step="0.01" name="coagent_company_portion_value" id="coagent_company_portion_value" placeholder="no need to type RM or % (if type percentage)" class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group xs-pt-10">
+                                                        <label>CoAgent Company Bank Name</label>
+                                                        <input type="text" name="coagent_company_bank_name" id="coagent_company_bank_name" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group xs-pt-10">
+                                                        <label>CoAgent Company Bank Account No</label>
+                                                        <input type="text" name="coagent_company_bank_acc_no" id="coagent_company_bank_acc_no" class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group xs-pt-10">
+                                                        <label>Total Payable to CoAgent</label>
+                                                        <input type="text" name="total_payable_to_coagent" id="total_payable_to_coagent" class="form-control" readonly="true">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div style="display: none;" id="external-cobroke-2" class="panel panel-border-color panel-border-color-primary">
+                                        <div class="panel-heading">External Cobroke - 3rd party collected deposit, PropL to invoice 3rd party</div>
+                                        <div class="panel-body">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group xs-pt-10">
+                                                        <label>CoAgent Company Name</label>
+                                                        <input type="text" name="coagent_company_name_2" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group xs-pt-10">
+                                                        <label>CoAgent Company Email</label>
+                                                        <input type="text" name="coagent_company_email_2" class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group xs-pt-10">
+                                                        <label>CoAgent Company Portion Type</label>
+                                                        <select class="form-control" name="coagent_company_portion_type_2" id="coagent_company_portion_type_2">
+                                                            <option value="1">Fixed Amount (RM)</option>
+                                                            <option value="2">Percentage</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group xs-pt-10">
+                                                        <label>CoAgent Company Portion Value</label>
+                                                        <input type="number" step="0.01" name="coagent_company_portion_value_2" id="coagent_company_portion_value_2" placeholder="no need to type RM or % (if type percentage)" class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group xs-pt-10">
+                                                        <label>GST by Landlord/ Vendor</label>
+                                                        <input type="text" name="coagent_company_gst_by_landlord_2" id="coagent_company_gst_by_landlord_2" class="form-control" readonly="true">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group xs-pt-10">
+                                                        <label>Total Amount to Invoice</label>
+                                                        <input type="text" name="coagent_company_total_amount_to_invoice_2" id="coagent_company_total_amount_to_invoice_2" class="form-control" readonly="true">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div style="display: none;" id="internal-referel" class="panel panel-border-color panel-border-color-primary">
+                                        <div class="panel-heading">INTERNAL REFERRAL</div>
+                                        <div class="panel-body">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group xs-pt-10">
+                                                        <label>Referral Name</label>
+                                                        <input type="text" name="internal_referrel_name" class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group xs-pt-10">
+                                                        <label>Referral Bank Name</label>
+                                                        <input type="text" class="form-control" name="internal_referrel_bankname" id="internal_referrel_bankname">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group xs-pt-10">
+                                                        <label>Referral Bank Account No</label>
+                                                        <input type="number" name="internal_referrel_bankacc" id="internal_referrel_bankacc" class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group xs-pt-10">
+                                                        <label>Referral Portion Type</label>
+                                                        <select class="form-control" name="internal_referrel_portion_type" id="internal_referrel_portion_type">
+                                                            <option value="1">Fixed Amount (RM)</option>
+                                                            <option value="2">Percentage</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group xs-pt-10">
+                                                        <label>Referral Portion Value</label>
+                                                        <input type="number" step="0.01" name="internal_referrel_portion_value" id="internal_referrel_portion_value" placeholder="no need to type RM or % (if type percentage)" class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group xs-pt-10">
+                                                        <label>GST by Referral (if any)</label>
+                                                        <input type="text" name="internal_referrel_gst" id="internal_referrel_gst" class="form-control" readonly="true">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group xs-pt-10">
+                                                        <label>Total Payable to Referral</label>
+                                                        <input type="text" name="internal_referrel_total_paid" id="internal_referrel_total_paid" class="form-control" readonly="true">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div style="display: none;" id="external-referel" class="panel panel-border-color panel-border-color-primary">
+                                        <div class="panel-heading">External Referrel</div>
+                                        <div class="panel-body">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group xs-pt-10">
+                                                        <label>Referral Name</label>
+                                                        <input type="text" name="external_referrel_name" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group xs-pt-10">
+                                                        <label>Referral IC No.</label>
+                                                        <input type="text" name="external_referrel_ic" class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group xs-pt-10">
+                                                        <label>Referral Correspondence Address</label>
+                                                        <textarea name="external_referrel_address" class="form-control"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group xs-pt-10">
+                                                        <label>Referral Bank Name</label>
+                                                        <input type="text" class="form-control" name="internal_referrel_bankname" id="internal_referrel_bankname">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group xs-pt-10">
+                                                        <label>Referral Bank Account No</label>
+                                                        <input type="number" name="internal_referrel_bankacc" id="internal_referrel_bankacc" class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group xs-pt-10">
+                                                        <label>Referral Portion Type</label>
+                                                        <select class="form-control" name="internal_referrel_portion_type" id="internal_referrel_portion_type">
+                                                            <option value="1">Fixed Amount (RM)</option>
+                                                            <option value="2">Percentage</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group xs-pt-10">
+                                                        <label>Referral Portion Value</label>
+                                                        <input type="number" step="0.01" name="internal_referrel_portion_value" id="internal_referrel_portion_value" placeholder="no need to type RM or % (if type percentage)" class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group xs-pt-10">
+                                                        <label>GST by Referral (if any)</label>
+                                                        <input type="text" name="internal_referrel_gst" id="internal_referrel_gst" class="form-control" readonly="true">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group xs-pt-10">
+                                                        <label>Total Payable to Referral</label>
+                                                        <input type="text" name="internal_referrel_total_paid" id="internal_referrel_total_paid" class="form-control" readonly="true">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div id="supporting-document" class="panel panel-border-color panel-border-color-primary">
+                                        <div class="panel-heading">Supporting Document</div>
+                                        <div class="panel-body">
+                                            
+                                        </div>
+                                    </div>
+                                    @csrf
+                                    <button type="submit" class="btn btn-block btn-info">Submit Form</button>
+
+
                                 </div>
                             </div>
+                        </form>
                         </div>
                     </div>
                 </div>
@@ -189,6 +559,63 @@
             $('.datepicker').datepicker({
                 format: 'mm/dd/yyyy',
                 maxViewMode: 3
+            });
+
+            $("#co_agency").on('change', function(){
+
+                if(this.value == 1)
+                {
+                    $('#internal-cobroke').hide();
+                    $('#external-cobroke-1').hide();
+                    $('#external-cobroke-2').hide();
+                    $('#internal-referel').hide();
+                    $('#external-referel').hide();
+                }
+                else if(this.value == 2)
+                {
+                
+                    $('#internal-cobroke').show();
+                    $('#external-cobroke-1').hide();
+                    $('#external-cobroke-2').hide();
+                    $('#internal-referel').hide();
+                    $('#external-referel').hide();
+                }
+                else if(this.value == 3)
+                {
+                
+                    $('#internal-cobroke').hide();
+                    $('#external-cobroke-1').show();
+                    $('#external-cobroke-2').hide();
+                    $('#internal-referel').hide();
+                    $('#external-referel').hide();
+                }
+                else if(this.value == 4)
+                {
+                
+                    $('#internal-cobroke').hide();
+                    $('#external-cobroke-1').hide();
+                    $('#external-cobroke-2').show();
+                    $('#internal-referel').hide();
+                    $('#external-referel').hide();
+                }
+                else if(this.value == 5)
+                {
+                
+                    $('#internal-cobroke').hide();
+                    $('#external-cobroke-1').hide();
+                    $('#external-cobroke-2').hide();
+                    $('#internal-referel').show();
+                    $('#external-referel').hide();
+                }
+                else if(this.value == 6)
+                {
+                
+                    $('#internal-cobroke').hide();
+                    $('#external-cobroke-1').hide();
+                    $('#external-cobroke-2').hide();
+                    $('#internal-referel').hide();
+                    $('#external-referel').show();
+                }
             });
 
             var options_pro_fee = {
@@ -253,6 +680,90 @@
             $("#pro_fee").typeWatch( options_pro_fee );
 
             $("#stamp_duty").typeWatch( options_stamp_duty );
+
+            // Internal Cobroke Calculation
+
+            var options_coagent_portion_value = {
+                callback: function (value) { 
+
+                    var coagent_portion_type = $("#coagent_portion_type").val();
+                    var coagent_portion_value = parseFloat(value);
+
+                    if(coagent_portion_type == 1)
+                    {
+                        var coagent_gst_by_landlord_raw = coagent_portion_value * 0.06;
+                        var coagent_gst_by_landlord = coagent_gst_by_landlord_raw.toFixed(2)
+
+                        $("#coagent_gst_by_landlord").val(coagent_gst_by_landlord);
+                    }
+                    else if(coagent_portion_type == 2)
+                    {
+                        var pro_fee = parseFloat($("#pro_fee").val());
+                        var selected = $("#coagent_id").find('option:selected');
+                        var rate = parseFloat(selected.data('rate')); 
+
+                        var coagent_portion_value = pro_fee * rate / 100;
+
+                        var coagent_gst_by_landlord_raw = coagent_portion_value * 0.06;
+                        var coagent_gst_by_landlord = coagent_gst_by_landlord_raw.toFixed(2);
+
+                        $("#coagent_gst_by_landlord").val(coagent_gst_by_landlord);
+
+                    }
+                    
+
+                },
+                wait: 750,
+                highlight: true,
+                allowSubmit: false,
+                captureLength: 1
+            }
+
+            $("#coagent_portion_value").typeWatch( options_coagent_portion_value );
+            //
+
+            // EXTERNAL COBROKE - PropL collected deposit, 3rd party to invoice PropL
+
+            var options_coagent_company_portion_value = {
+                callback: function (value) { 
+
+                    var coagent_company_portion_type = $("#coagent_company_portion_type").val();
+                    var coagent_company_portion_value = parseFloat(value);
+
+                    if(coagent_company_portion_type == 1)
+                    {
+                        var coagent_company_gst_by_landlord_raw = (coagent_company_portion_value * 0.06) + coagent_company_portion_value;
+                        var total_payable_to_coagent = coagent_company_gst_by_landlord_raw.toFixed(2)
+
+                        $("#total_payable_to_coagent").val(total_payable_to_coagent); 
+
+                    }
+                    else if(coagent_company_portion_type == 2)
+                    {
+                        var pro_fee = parseFloat($("#pro_fee").val());
+                        var selected = $("#coagent_id").find('option:selected');
+                        var rate = parseFloat(selected.data('rate')); 
+
+                        var coagent_portion_value = pro_fee * rate / 100;
+
+                        var coagent_gst_by_landlord_raw = coagent_portion_value * 0.06;
+                        var coagent_gst_by_landlord = coagent_gst_by_landlord_raw.toFixed(2);
+
+                        $("#coagent_gst_by_landlord").val(coagent_gst_by_landlord);
+
+                    }
+                    
+
+                },
+                wait: 750,
+                highlight: true,
+                allowSubmit: false,
+                captureLength: 1
+            }
+
+            $("#coagent_company_portion_value").typeWatch( options_coagent_company_portion_value );
+
+            //
 
         });
         </script>

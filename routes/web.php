@@ -60,6 +60,7 @@ Route::middleware(['isnegotiator'])->group(function () {
     Route::get('/negotiator', 'DashboardController@index');
 
     Route::get('/negotiator/submission/create', 'SubmissionController@create');
+    Route::post('/negotiator/submission', 'SubmissionController@store');
     
 });
 

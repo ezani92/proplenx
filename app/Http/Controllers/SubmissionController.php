@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Submission;
+use App\User;
 use Illuminate\Http\Request;
 
 class SubmissionController extends Controller
@@ -24,7 +25,11 @@ class SubmissionController extends Controller
      */
     public function create()
     {
-        return view('negotiator.submission.create');
+        $users = User::all();
+
+        return view('negotiator.submission.create',[
+            'users' => $users
+        ]);
     }
 
     /**
@@ -35,7 +40,7 @@ class SubmissionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return "Your Submission Has Been Submitted.";
     }
 
     /**
