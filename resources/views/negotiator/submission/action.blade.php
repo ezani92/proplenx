@@ -1,0 +1,1 @@
+<a href="{{ URL::to('negotiator/submission/'.$submission->id) }}" class="btn btn-xs btn-info">View</a>

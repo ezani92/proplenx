@@ -46,6 +46,7 @@ Route::middleware(['isadmin'])->group(function () {
     Route::post('/admin/user', 'UserController@store');
     Route::get('/admin/user/{user_id}', 'UserController@show');
     Route::get('/admin/user/{user_id}/edit', 'UserController@edit');
+    Route::get('/admin/user/{user_id}/resetpassword', 'UserController@ResetPassword');
     Route::put('/admin/user/{user_id}', 'UserController@update');
     Route::get('/admin/user/{user_id}/deactivated', 'UserController@deactivated');
     Route::get('/admin/user/{user_id}/activated', 'UserController@activated');
@@ -60,7 +61,10 @@ Route::middleware(['isnegotiator'])->group(function () {
     Route::get('/negotiator', 'DashboardController@index');
 
     Route::get('/negotiator/submission/create', 'SubmissionController@create');
+    Route::get('/negotiator/submission', 'SubmissionController@index');
+    Route::get('/negotiator/submission/data', 'SubmissionController@data');
     Route::post('/negotiator/submission', 'SubmissionController@store');
+    Route::get('/negotiator/submission/{submission_id}', 'SubmissionController@show');
     
 });
 

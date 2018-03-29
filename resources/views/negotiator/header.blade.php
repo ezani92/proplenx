@@ -18,6 +18,7 @@
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.min.css"/>
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.2/sweetalert2.min.css">
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.4.0/dropzone.css">
         <link rel="stylesheet" href="{{ secure_asset('assets/css/style.css') }}" type="text/css"/>
     </head>
     <body>
@@ -93,7 +94,7 @@
                     </div>
                 </div>
             </nav>
-            <div class="be-left-sidebar">
+            <div class="be-left-sidebar hidden-print">
                 <div class="left-sidebar-wrapper">
                     <a href="#" class="left-sidebar-toggle">Dashboard</a>
                     <div class="left-sidebar-spacer">
@@ -107,7 +108,7 @@
                                     <li class="parent {{ Request::is('negotiator/submission*') ? 'active' : '' }}">
                                         <a href="#"><i class="icon mdi mdi-collection-text"></i><span>Submission</span></a>
                                         <ul class="sub-menu">
-                                            <li><a href="{{ url('negotiator/submission') }}">My Submission</a></li>
+                                            <li class="{{ Request::is('negotiator/submission') ? 'active' : '' }}"><a href="{{ url('negotiator/submission') }}">My Submission</a></li>
                                             <li class="{{ Request::is('negotiator/submission/create') ? 'active' : '' }}"><a href="{{ url('negotiator/submission/create') }}">Create Submission</a></li>
                                         </ul>
                                     </li>

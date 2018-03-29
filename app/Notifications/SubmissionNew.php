@@ -7,18 +7,20 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class SubmissionNew extends Notification
+class SubmissionNew extends Notification implements ShouldQueue
 {
     use Queueable;
+
+     public $negotiator;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($negotiator)
     {
-        //
+        $this->negotiator = $negotiator;
     }
 
     /**
@@ -40,7 +42,7 @@ class SubmissionNew extends Notification
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)->markdown('mail.submission.new');
+        return (new MailMessage)->markdown('mail.submission.new',['negotiator' => $this->negotiator]);
     }
 
     /**

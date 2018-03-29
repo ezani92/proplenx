@@ -32,6 +32,16 @@ class UserTableSeeder extends Seeder {
             'role' => 1
 
     	));
+
+        User::create(array(
+            'name' => 'Shaiful Ezani',
+            'email' => 'shaiful@naxpansion.com',
+            'password' => bcrypt('123456'),
+            'type' => 'Negotiator',
+            'role' => 2,
+            'commision_rate' => '90'
+
+        ));
     }
 
 }

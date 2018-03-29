@@ -1,11 +1,10 @@
 @component('mail::message')
-# Introduction
+# Hi Administrator
 
-The body of your message.
+Your have new case submitted by negotiator 
 
-@component('mail::button', ['url' => ''])
-Button Text
-@endcomponent
+- Negotiator ID : {{ $negotiator->agent_code }}
+- Name : {{ $negotiator->email }}
 
 Thanks,<br>
 {{ config('app.name') }}

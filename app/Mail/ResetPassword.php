@@ -8,7 +8,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class NewNegotiator extends Mailable implements ShouldQueue
+class ResetPassword extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
@@ -33,6 +33,6 @@ class NewNegotiator extends Mailable implements ShouldQueue
      */
     public function build()
     {
-        return $this->markdown('emails.new-negotiator');
+        return $this->markdown('emails.reset-password');
     }
 }

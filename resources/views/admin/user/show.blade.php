@@ -66,6 +66,7 @@
                             </div>
                         </div>
                         <a href="{{ url('admin/user/'.$user->id.'/edit') }}" class="btn btn-block btn-info">Edit Account</a>
+                        <a href="{{ url('admin/user/'.$user->id.'/resetpassword') }}" onclick="return resetpassword(this.href)" class="btn btn-block btn-default">Reset password</a>
                         @if($user->is_active == 1)
                         <a href="{{ url('admin/user/'.$user->id.'/deactivated') }}" onclick="return deactivated(this.href)" class="btn btn-block btn-warning">Deactivate Account</a>
                         @elseif($user->is_active == 0)
@@ -105,6 +106,23 @@
                     confirmButtonColor: '#3085d6',
                     cancelButtonColor: '#d33',
                     confirmButtonText: 'Yes, activated it!'
+                }).then(function() {
+                    window.location.replace(url);
+                })
+            
+                return false;
+            }
+
+            function resetpassword(url) {
+            
+                swal({
+                    title: 'Are you sure?',
+                    text: "Negotiator will receive an email with new password",
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, reset it!'
                 }).then(function() {
                     window.location.replace(url);
                 })

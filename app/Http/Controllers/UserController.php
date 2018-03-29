@@ -11,6 +11,7 @@ use App\User;
 use Session;
 use Mail;
 use App\Mail\NewNegotiator;
+use App\Mail\ResetPassword;
 
 class UserController extends Controller
 {
@@ -203,6 +204,25 @@ class UserController extends Controller
 
         Session::flash('message', 'Account successfuly deactivated. This negotiator was able to login again.'); 
         Session::flash('alert-class', 'alert-success');
+
+        return redirect('admin/user/'.$user->id);
+    }
+
+    public function ResetPassword($id)
+    {
+        $temp_pass = time();
+        $user = User::find($id);
+
+        $user->password = bcrypt($temp_pass);
+
+        if($user->save())
+        {
+
+            Mail::to($user)->send(new ResetPassword($user,$temp_pass));
+
+            Session::flash('message', 'New Password has been sent to new negotiator.'); 
+            Session::flash('alert-class', 'alert-success');
+        }
 
         return redirect('admin/user/'.$user->id);
     }
