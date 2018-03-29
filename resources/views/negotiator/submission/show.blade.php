@@ -225,7 +225,7 @@
                                     <br />
                                     <ul>
                                         @foreach($submission->documents as $document)
-                                            <li><a target="_blank" href="{{ secure_asset($document->filename) }}">{{ $document->original_name }}</a></li>
+                                            <li><a target="_blank" href="{{ secure_asset('storage/'.$document->filename) }}">{{ $document->original_name }}</a></li>
                                         @endforeach
                                     </ul>
                                     <br />
