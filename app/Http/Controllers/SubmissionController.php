@@ -169,8 +169,8 @@ class SubmissionController extends Controller
         else if($input['co_agency'] == 4)
         {
             $submission->coagent_company_name_2 = $input['coagent_company_name_2'];
-            $submission->coagent_company_portion_type_2 = $input['coagent_company_portion_type_2'];
-            $submission->coagent_company_portion_value_2 = $input['coagent_company_portion_value_2'];
+            $submission->proplenx_portion_type_2 = $input['proplenx_portion_type_2'];
+            $submission->proplenx_portion_value_2 = $input['proplenx_portion_value_2'];
             $submission->coagent_company_bank_name_2 = $input['coagent_company_bank_name_2'];
             $submission->coagent_company_bank_acc_no_2 = $input['coagent_company_bank_acc_no_2'];
             $submission->total_payable_to_coagent_2 = $input['total_payable_to_coagent_2'];
@@ -200,16 +200,21 @@ class SubmissionController extends Controller
 
         $submission->save();
 
-        foreach ($request->documents as $document)
+        if ($request->hasFile('documents'))
         {
-            $filename = $document->store('documents');
-            $original_name = $document->getClientOriginalName();
-            
-            Document::create([
-                'submission_id' => $submission->id,
-                'original_name' => $original_name,
-                'filename' => $filename
-            ]);
+
+            foreach ($request->documents as $document)
+            {
+                $filename = $document->store('documents');
+                $original_name = $document->getClientOriginalName();
+                
+                Document::create([
+                    'submission_id' => $submission->id,
+                    'original_name' => $original_name,
+                    'filename' => $filename
+                ]);
+            }
+
         }
 
         $negotiator = User::find(\Auth::user()->id);

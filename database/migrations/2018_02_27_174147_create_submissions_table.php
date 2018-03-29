@@ -61,8 +61,8 @@ class CreateSubmissionsTable extends Migration
 
             $table->string('coagent_company_name_2')->nullable();
             $table->string('coagent_company_email_2')->nullable();
-            $table->integer('coagent_company_portion_type_2')->nullable();
-            $table->string('coagent_company_portion_value_2')->nullable();
+            $table->integer('proplenx_portion_type_2')->nullable();
+            $table->string('proplenx_portion_value_2')->nullable();
             $table->string('coagent_company_gst_by_landlord_2')->nullable();
             $table->decimal('coagent_company_total_amount_to_invoice_2', 8, 2)->nullable();
 
