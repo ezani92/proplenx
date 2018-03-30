@@ -755,36 +755,37 @@
             var options_coagent_company_portion_value = {
                 callback: function (value) { 
 
-                    var coagent_company_portion_type_2 = $("#coagent_company_portion_type_2").val();
-                    var coagent_company_portion_value_2 = parseFloat(value);
+                    var coagent_company_portion_type = $("#coagent_company_portion_type").val();
+                    var coagent_company_portion_value = parseFloat(value);
 
-                    if(coagent_company_portion_type_2 == 1)
+
+                    if(coagent_company_portion_type == 1)
                     {
 
-                        var coagent_gst_by_landlord_raw = coagent_company_portion_value_2 * 0.06;
+                        var coagent_gst_by_landlord_raw = coagent_company_portion_value * 0.06;
                         var coagent_gst_by_landlord = coagent_gst_by_landlord_raw.toFixed(2);
 
-                        var total_payable_to_coagent_raw = coagent_gst_by_landlord_raw + coagent_company_portion_value_2;
+                        var total_payable_to_coagent_raw = coagent_gst_by_landlord_raw + coagent_company_portion_value;
                         var total_payable_to_coagent = total_payable_to_coagent_raw.toFixed(2);
 
-                        $("#coagent_portion_amount_2").val(total_payable_to_coagent);
+                        $("#coagent_portion_amount_2").val(coagent_company_portion_value);
                         $("#total_payable_to_coagent").val(total_payable_to_coagent); 
 
                     }
-                    else if(coagent_company_portion_type_2 == 2)
+                    else if(coagent_company_portion_type == 2)
                     {
                         var pro_fee = parseFloat($("#pro_fee").val());
 
-                        var coagent_portion_amount_2_raw = pro_fee * coagent_company_portion_value_2 / 100;
-                        var coagent_portion_amount_2 = coagent_portion_amount_2_raw.toFixed(2);
+                        var coagent_portion_amount_raw = pro_fee * coagent_company_portion_value / 100;
+                        var coagent_portion_amount = coagent_portion_amount_raw.toFixed(2);
 
-                        var coagent_gst_by_landlord_2_raw = coagent_portion_amount_2 * 0.06;
-                        var coagent_gst_by_landlord_2 = coagent_gst_by_landlord_2_raw.toFixed(2);
+                        var coagent_gst_by_landlord_raw = coagent_portion_amount * 0.06;
+                        var coagent_gst_by_landlord = coagent_gst_by_landlord_raw.toFixed(2);
 
-                        var total_payable_to_coagent_raw = coagent_portion_amount_2_raw + coagent_gst_by_landlord_2_raw;
+                        var total_payable_to_coagent_raw = coagent_portion_amount_raw + coagent_gst_by_landlord_raw;
                         var total_payable_to_coagent = total_payable_to_coagent_raw.toFixed(2);
 
-                        $("#coagent_portion_amount").val(total_payable_to_coagent);
+                        $("#coagent_portion_amount_2").val(coagent_portion_amount_raw);
 
                         $("#total_payable_to_coagent").val(total_payable_to_coagent);
 
