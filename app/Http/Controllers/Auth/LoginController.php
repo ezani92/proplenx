@@ -43,12 +43,12 @@ class LoginController extends Controller
         // Logic that determines where to send the user
         if (\Auth::user()->role == '1')
         {
-            return '/admin';
+            return url()->previous();
         }
         
         else if (\Auth::user()->role == '2')
         {
-            return '/negotiator';
+            return url()->previous();
         }
     }
 }

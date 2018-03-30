@@ -25,11 +25,14 @@ class RedirectIfAuthenticated
         {
             if (Auth::user()->role == '1')
             {
-                return redirect('/admin');
+                
+                return redirect()->intended('/admin');
             }
             else
             {
-                return redirect('/negotiator');
+                
+                return redirect()->intended('/negotiator');
+
             }
         }
 

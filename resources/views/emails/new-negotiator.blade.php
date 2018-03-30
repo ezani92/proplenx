@@ -7,7 +7,7 @@ Your Account Was Created by Proplenx Administrator, Below is your login access,
 - Email : {{ $user->email }}
 - Temporary Password : {{ $temp_pass }}
 
-@component('mail::button', ['url' => '#'])
+@component('mail::button', ['url' => url('/')])
 Login Now
 @endcomponent
 
