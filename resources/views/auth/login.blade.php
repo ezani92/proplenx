@@ -23,7 +23,7 @@
                     <br /><br /><br />
                     <div class="splash-container">
                         <div class="panel panel-default panel-border-color panel-border-color-primary">
-                            <div class="panel-heading"><img src="{{ secure_asset('assets/img/logo.png') }}"><span class="splash-description">Please enter your user information.</span></div>
+                            <div class="panel-heading"><img src="{{ secure_asset('assets/img/main_logo.jpg') }}"><span class="splash-description">Please enter your user information.</span></div>
                             <div class="panel-body">
                                 <form method="POST" action="{{ route('login') }}">
                                     @csrf

@@ -47,12 +47,12 @@
                                                     <div class="form-group xs-pt-10">
                                                         <label>Status</label>
                                                         <select class="form-control" name="status" required>
-                                                            <option value="1">Pending/ Outstanding </option>
-                                                            <option value="2">- CoNegotiator Invoice</option>
-                                                            <option value="3">- CoAgency Payment</option>
-                                                            <option value="4">- Referral Invoice</option>
-                                                            <option value="5">- Bank-in Slip</option>
-                                                            <option value="6">- Payment from Landlord</option>
+                                                            <option value="">Select</option>
+                                                            <option value="2">Pending/ Outstanding CoNegotiator Invoice</option>
+                                                            <option value="3">Pending/ Outstanding CoAgency Payment</option>
+                                                            <option value="4">Pending/ Outstanding Referral Invoice</option>
+                                                            <option value="5">Pending/ Outstanding Bank-in Slip</option>
+                                                            <option value="6">Payment from Landlord</option>
                                                             <option value="7">Negotiator Refer Remark </option>
                                                             <option value="8">Admin Refer Remark</option>
                                                             <option value="9">Aborted</option>
