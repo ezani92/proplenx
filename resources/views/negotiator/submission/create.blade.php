@@ -744,7 +744,14 @@
             var options_pro_fee = {
                 callback: function (value) { 
 
-                    var gst = parseFloat($('#gst_by_landlord_vendor').val());
+                    if(value == '')
+                    {
+                        var gst = 0;
+                    }
+                    else
+                    {
+                        var gst = parseFloat($('#gst_by_landlord_vendor').val());
+                    }
 
                     var pro_fee_gst_raw = parseFloat(value) + gst;
                     var pro_fee_gst = pro_fee_gst_raw.toFixed(2);
