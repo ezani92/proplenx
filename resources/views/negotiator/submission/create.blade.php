@@ -35,7 +35,7 @@
                                                             <option value="1">No</option>
                                                             <option value="2">Internal CoAgency</option>
                                                             <option value="3">Proplenx Collect Deposit. Third Party To Invoice Proplenx</option>
-                                                            <option value="4">CoNegotiator Collect Deposit. Proplenx To Invoice CoNegotiator</option>
+                                                            <option value="4">CoAgent Collect Deposit, PropLenx to Invoice CoAgent</option>
                                                             <option value="5">Internal Referral</option>
                                                             <option value="6">External Referral</option>
                                                         </select>
@@ -125,7 +125,7 @@
                                                     <div class="form-group xs-pt-10">
                                                         <label><strong>GST by Landlord/ Vendor (RM)</strong>
                                                             <code>[6% of Professional Fee]</code></label>
-                                                        <input type="number" step="0.01" id="gst_by_landlord_vendor" name="gst_by_landlord_vendor" class="form-control" readonly="true">
+                                                        <input type="number" step="0.01" id="gst_by_landlord_vendor" name="gst_by_landlord_vendor" class="form-control">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
@@ -208,7 +208,21 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group xs-pt-10">
                                                         <label><strong>Bank Name</strong></label>
-                                                        <input type="text" name="landlord_vendor_bank_name" class="form-control" required>
+                                                        <select class="form-control" name="landlord_vendor_bank_name" required>
+                                                            <option value="Maybank">Maybank</option>
+                                                            <option value="CIMB">CIMB</option>
+                                                            <option value="Public Bank Berhad">Public Bank Berhad</option>
+                                                            <option value="RHB Bank">RHB Bank</option>
+                                                            <option value="Hong Leong Bank">Hong Leong Bank</option>
+                                                            <option value="AmBank">AmBank</option>
+                                                            <option value="United Overseas Bank">United Overseas Bank</option>
+                                                            <option value="Bank Rakyat">Bank Rakyat</option>
+                                                            <option value="OCBC Bank">OCBC Bank</option>
+                                                            <option value="HSBC">HSBC</option>
+                                                            <option value="Bank Islam">Bank Islam</option>
+                                                            <option value="Bank Simpanan Nasional">Bank Simpanan Nasional</option>
+                                                            <option value="Affin Bank">Affin Bank</option>
+                                                        </select>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
@@ -250,7 +264,21 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group xs-pt-10">
                                                         <label><strong>Bank Name</strong></label>
-                                                        <input type="text" name="tennant_purchaser_bank_name" class="form-control" required>
+                                                        <select class="form-control" name="tennant_purchaser_bank_name" required>
+                                                            <option value="Maybank">Maybank</option>
+                                                            <option value="CIMB">CIMB</option>
+                                                            <option value="Public Bank Berhad">Public Bank Berhad</option>
+                                                            <option value="RHB Bank">RHB Bank</option>
+                                                            <option value="Hong Leong Bank">Hong Leong Bank</option>
+                                                            <option value="AmBank">AmBank</option>
+                                                            <option value="United Overseas Bank">United Overseas Bank</option>
+                                                            <option value="Bank Rakyat">Bank Rakyat</option>
+                                                            <option value="OCBC Bank">OCBC Bank</option>
+                                                            <option value="HSBC">HSBC</option>
+                                                            <option value="Bank Islam">Bank Islam</option>
+                                                            <option value="Bank Simpanan Nasional">Bank Simpanan Nasional</option>
+                                                            <option value="Affin Bank">Affin Bank</option>
+                                                        </select>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
@@ -356,7 +384,21 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group xs-pt-10">
                                                         <label><strong>CoAgent Company Bank Name</strong></label>
-                                                        <input type="text" name="coagent_company_bank_name" id="coagent_company_bank_name" class="form-control">
+                                                        <select class="form-control" name="coagent_company_bank_name" id="coagent_company_bank_name" required>
+                                                            <option value="Maybank">Maybank</option>
+                                                            <option value="CIMB">CIMB</option>
+                                                            <option value="Public Bank Berhad">Public Bank Berhad</option>
+                                                            <option value="RHB Bank">RHB Bank</option>
+                                                            <option value="Hong Leong Bank">Hong Leong Bank</option>
+                                                            <option value="AmBank">AmBank</option>
+                                                            <option value="United Overseas Bank">United Overseas Bank</option>
+                                                            <option value="Bank Rakyat">Bank Rakyat</option>
+                                                            <option value="OCBC Bank">OCBC Bank</option>
+                                                            <option value="HSBC">HSBC</option>
+                                                            <option value="Bank Islam">Bank Islam</option>
+                                                            <option value="Bank Simpanan Nasional">Bank Simpanan Nasional</option>
+                                                            <option value="Affin Bank">Affin Bank</option>
+                                                        </select>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
@@ -446,7 +488,21 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group xs-pt-10">
                                                         <label><strong>Referral Bank Name</strong></label>
-                                                        <input type="text" class="form-control" name="internal_referrel_bankname" id="internal_referrel_bankname">
+                                                        <select class="form-control" name="internal_referrel_bankname" id="internal_referrel_bankname" required>
+                                                            <option value="Maybank">Maybank</option>
+                                                            <option value="CIMB">CIMB</option>
+                                                            <option value="Public Bank Berhad">Public Bank Berhad</option>
+                                                            <option value="RHB Bank">RHB Bank</option>
+                                                            <option value="Hong Leong Bank">Hong Leong Bank</option>
+                                                            <option value="AmBank">AmBank</option>
+                                                            <option value="United Overseas Bank">United Overseas Bank</option>
+                                                            <option value="Bank Rakyat">Bank Rakyat</option>
+                                                            <option value="OCBC Bank">OCBC Bank</option>
+                                                            <option value="HSBC">HSBC</option>
+                                                            <option value="Bank Islam">Bank Islam</option>
+                                                            <option value="Bank Simpanan Nasional">Bank Simpanan Nasional</option>
+                                                            <option value="Affin Bank">Affin Bank</option>
+                                                        </select>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
@@ -521,7 +577,21 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group xs-pt-10">
                                                         <label><strong>Referral Bank Name</strong></label>
-                                                        <input type="text" class="form-control" name="external_referrel_bankname" id="external_referrel_bankname">
+                                                        <select class="form-control" name="external_referrel_bankname" id="external_referrel_bankname" required>
+                                                            <option value="Maybank">Maybank</option>
+                                                            <option value="CIMB">CIMB</option>
+                                                            <option value="Public Bank Berhad">Public Bank Berhad</option>
+                                                            <option value="RHB Bank">RHB Bank</option>
+                                                            <option value="Hong Leong Bank">Hong Leong Bank</option>
+                                                            <option value="AmBank">AmBank</option>
+                                                            <option value="United Overseas Bank">United Overseas Bank</option>
+                                                            <option value="Bank Rakyat">Bank Rakyat</option>
+                                                            <option value="OCBC Bank">OCBC Bank</option>
+                                                            <option value="HSBC">HSBC</option>
+                                                            <option value="Bank Islam">Bank Islam</option>
+                                                            <option value="Bank Simpanan Nasional">Bank Simpanan Nasional</option>
+                                                            <option value="Affin Bank">Affin Bank</option>
+                                                        </select>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
@@ -569,18 +639,29 @@
 
                                     <div id="supporting-document" class="panel panel-border-color panel-border-color-primary">
                                         <div class="panel-heading">Supporting Document</div>
-                                        <div class="panel-body">
+                                        <div class="panel-body document_lists">
                                             <div class="row">
-                                                <div class="col-md-12">
+                                                <div class="col-md-5">
                                                     <div class="form-group xs-pt-10">
-                                                        <input type="file" name="documents[]" id="" class="multifile" />
-                                                        <br />
+                                                        <label>Document</label>
+                                                        <input type="file" name="documents[]" class="form-control" />
                                                     </div>
+                                                </div>
+                                                <div class="col-md-5">
+                                                    <div class="form-group xs-pt-10">
+                                                        <label>Type</label>
+                                                        <input type="text" name="documents_type[]" class="form-control" placeholder="Bank In Slip / Offer Letter / 3rd Party Invoice / Others" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <label></label><br /><br />
+                                                    <button type="button" class="btn btn-xl btn-success" onclick="addDoc({{ time() }});">&nbsp;<i class="mdi mdi-plus"></i>&nbsp;</button>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     @csrf
+                                    <button type="submit" class="btn btn-block btn-default">Save Form</button>
                                     <button type="submit" class="btn btn-block btn-info">Submit Form</button>
 
 
@@ -663,7 +744,7 @@
             var options_pro_fee = {
                 callback: function (value) { 
 
-                    var pro_fee_gst_raw = parseFloat(value);
+                    var pro_fee_gst_raw = parseFloat(value) + (parseFloat(value) * 6 / 100);
                     var pro_fee_gst = pro_fee_gst_raw.toFixed(2);
                     $("#pro_fee_gst").val(pro_fee_gst);
 
@@ -671,7 +752,7 @@
                     var gst_by_landlord_vendor = gst_by_landlord_vendor_raw.toFixed(2);
                     $("#gst_by_landlord_vendor").val(gst_by_landlord_vendor);
 
-                    var amount_to_invoice_landlord_raw = parseFloat($("#pro_fee_gst").val()) + parseFloat($("#gst_by_landlord_vendor").val());
+                    var amount_to_invoice_landlord_raw = parseFloat($("#pro_fee_gst").val());
                     var amount_to_invoice_landlord = amount_to_invoice_landlord_raw.toFixed(2);
                     $("#amount_to_invoice_landlord").val(amount_to_invoice_landlord);
 
@@ -972,6 +1053,20 @@
             $("#external_referrel_portion_value").typeWatch( options_external_referrel_portion_value );
 
         });
+        </script>
+        <script type="text/javascript">
+            function addDoc(i)
+            {
+                var unix = Math.round(+new Date()/1000);
+
+                var html = '<div class="row remove'+ unix +'"> <div class="col-md-5"> <div class="form-group xs-pt-10"> <label>Document</label> <input type="file" name="documents[]" class="form-control" /> </div> </div> <div class="col-md-5"> <div class="form-group xs-pt-10"> <label>Type</label> <input type="text" name="documents_type[]" class="form-control" placeholder="Bank In Slip / Offer Letter / 3rd Party Invoice / Others" /> </div> </div> <div class="col-md-2"> <label></label><br /><br /> <button type="button" class="btn btn-xl btn-success" onclick="addDoc('+ unix +');">&nbsp;<i class="mdi mdi-plus"></i>&nbsp;</button> <button type="button" class="btn btn-xl btn-danger" onclick="removeDoc('+ unix +');">&nbsp;<i class="mdi mdi-minus"></i>&nbsp;</button></div> </div>';
+
+                $(".document_lists").append(html);
+            }
+            function removeDoc(i)
+            {
+                $(".remove"+i).remove();
+            }
         </script>
     </body>
 </html>
