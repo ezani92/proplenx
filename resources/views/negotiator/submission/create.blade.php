@@ -113,8 +113,8 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group xs-pt-10">
                                                         <label>
-                                                            <strong>Professional Fee has included 6% GST</strong>
-                                                            <code>[Professional Fee x 6%]</code>
+                                                            <strong>Professional Fee has included GST</strong>
+                                                            <code>[Professional Fee x GST]</code>
                                                         </label>
                                                         <input type="number" id="pro_fee_gst" class="form-control" name="pro_fee_gst" readonly="true">
                                                     </div>
@@ -124,8 +124,11 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group xs-pt-10">
                                                         <label><strong>GST by Landlord/ Vendor (RM)</strong>
-                                                            <code>[6% of Professional Fee]</code></label>
-                                                        <input type="number" step="0.01" placeholder="If Applicable" id="gst_by_landlord_vendor" name="gst_by_landlord_vendor" class="form-control">
+                                                            <code>[0% or 6% of Professional Fee]</code></label>
+                                                        <select class="form-control" name="gst_by_landlord_vendor" id="gst_by_landlord_vendor">
+                                                            <option value="0">0 %</option>
+                                                            <option value="0.06">6 %</option>
+                                                        </select>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
@@ -409,10 +412,20 @@
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-md-12">
+                                                <div class="col-md-6">
+                                                    <div class="form-group xs-pt-10">
+                                                        <label><strong>GST by Landlord/ Vendor</strong>
+                                                            <code>[0% or 6% of Professional Fee]</code></label>
+                                                        <select class="form-control" name="coagent_gst_by_landlord_vendor" id="coagent_gst_by_landlord_vendor">
+                                                            <option value="0">0 %</option>
+                                                            <option value="0.06">6 %</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
                                                     <div class="form-group xs-pt-10">
                                                         <label><strong>Total Payable to CoAgent</strong>
-                                                            <code>[CoAgent Portion + Tax by Landlord/ Vendor]</code></label>
+                                                            <code>[CoAgent Portion + GST by Landlord/ Vendor]</code></label>
                                                         <input type="text" name="total_payable_to_coagent" id="total_payable_to_coagent" class="form-control" readonly="true">
                                                     </div>
                                                 </div>
@@ -744,16 +757,10 @@
             var options_pro_fee = {
                 callback: function (value) { 
 
-                    if($('#gst_by_landlord_vendor').val() == '')
-                    {
-                        var gst = 0;
-                    }
-                    else
-                    {
-                        var gst = parseFloat($('#gst_by_landlord_vendor').val());
-                    }
+                    var gst = parseFloat($('#gst_by_landlord_vendor').val());
+                    
 
-                    var pro_fee_gst_raw = parseFloat(value) + gst;
+                    var pro_fee_gst_raw = parseFloat(value) + (parseFloat(value) * gst);
                     var pro_fee_gst = pro_fee_gst_raw.toFixed(2);
                     $("#pro_fee_gst").val(pro_fee_gst);
 
@@ -780,7 +787,7 @@
                     var stamp_duty = parseFloat(value);
                     var negotiator_commision = parseFloat($("#negotiator_commision").val());
                     var pro_fee = parseFloat($("#pro_fee").val());
-                    var gst_by_landlord_vendor = parseFloat($("#gst_by_landlord_vendor").val());
+                    var gst_by_landlord_vendor = parseFloat($("#gst_by_landlord_vendor").val()) * pro_fee;
 
                     var balance_due_landlord_vendor_raw = amount_bank_in_to_proplex - amount_to_invoice_landlord - stamp_duty;
                     var balance_due_landlord_vendor = balance_due_landlord_vendor_raw.toFixed(2);
@@ -805,38 +812,21 @@
                 captureLength: 1
             }
 
-            var options_gst_by_landlord_vendor = {
-                callback: function (value) { 
+            $("#gst_by_landlord_vendor").on("change", function(){
 
-                    if(value == '')
-                    {
-                        var gst = 0;
-                    }
-                    else
-                    {
-                        var gst = parseFloat(value);
-                    }
+                var pro_fee_gst_raw = parseFloat($('#pro_fee').val()) + (parseFloat($('#pro_fee').val() * this.value));
+                var pro_fee_gst = pro_fee_gst_raw.toFixed(2);
+                $("#pro_fee_gst").val(pro_fee_gst);
 
-                    var pro_fee_gst_raw = parseFloat($('#pro_fee').val()) + gst;
-                    var pro_fee_gst = pro_fee_gst_raw.toFixed(2);
-                    $("#pro_fee_gst").val(pro_fee_gst);
+                var amount_to_invoice_landlord_raw = parseFloat($("#pro_fee").val()) + (parseFloat($('#pro_fee').val() * this.value));
+                var amount_to_invoice_landlord = amount_to_invoice_landlord_raw.toFixed(2);
+                $("#amount_to_invoice_landlord").val(amount_to_invoice_landlord);
 
-                    var amount_to_invoice_landlord_raw = parseFloat($("#pro_fee").val()) + gst;
-                    var amount_to_invoice_landlord = amount_to_invoice_landlord_raw.toFixed(2);
-                    $("#amount_to_invoice_landlord").val(amount_to_invoice_landlord);
-
-                },
-                wait: 750,
-                highlight: true,
-                allowSubmit: false,
-                captureLength: 1
-            }
+            });
 
             $("#pro_fee").typeWatch( options_pro_fee );
 
             $("#stamp_duty").typeWatch( options_stamp_duty );
-
-            $("#gst_by_landlord_vendor").typeWatch( options_gst_by_landlord_vendor );
 
             // Internal Cobroke Calculation - DONE
 
@@ -889,12 +879,13 @@
 
                     var coagent_company_portion_type = $("#coagent_company_portion_type").val();
                     var coagent_company_portion_value = parseFloat(value);
+                    var gst = parseFloat($('#coagent_gst_by_landlord_vendor').val());
 
 
                     if(coagent_company_portion_type == 1)
                     {
 
-                        var coagent_gst_by_landlord_raw = coagent_company_portion_value * 0.06;
+                        var coagent_gst_by_landlord_raw = coagent_company_portion_value * gst;
                         var coagent_gst_by_landlord = coagent_gst_by_landlord_raw.toFixed(2);
 
                         var total_payable_to_coagent_raw = coagent_gst_by_landlord_raw + coagent_company_portion_value;
@@ -911,7 +902,7 @@
                         var coagent_portion_amount_raw = pro_fee * coagent_company_portion_value / 100;
                         var coagent_portion_amount = coagent_portion_amount_raw.toFixed(2);
 
-                        var coagent_gst_by_landlord_raw = coagent_portion_amount * 0.06;
+                        var coagent_gst_by_landlord_raw = coagent_portion_amount * gst;
                         var coagent_gst_by_landlord = coagent_gst_by_landlord_raw.toFixed(2);
 
                         var total_payable_to_coagent_raw = coagent_portion_amount_raw + coagent_gst_by_landlord_raw;
@@ -932,6 +923,51 @@
             }
 
             $("#coagent_company_portion_value").typeWatch( options_coagent_company_portion_value );
+
+            $("#coagent_gst_by_landlord_vendor").on("change", function(){
+
+               
+
+                    var coagent_company_portion_type = $("#coagent_company_portion_type").val();
+                    var coagent_company_portion_value = parseFloat($("#coagent_company_portion_value").val());
+                    var gst = parseFloat(this.value);
+
+
+                    if(coagent_company_portion_type == 1)
+                    {
+
+                        var coagent_gst_by_landlord_raw = coagent_company_portion_value * gst;
+                        var coagent_gst_by_landlord = coagent_gst_by_landlord_raw.toFixed(2);
+
+                        var total_payable_to_coagent_raw = coagent_gst_by_landlord_raw + coagent_company_portion_value;
+                        var total_payable_to_coagent = total_payable_to_coagent_raw.toFixed(2);
+
+                        $("#coagent_portion_amount_2").val(coagent_company_portion_value);
+                        $("#total_payable_to_coagent").val(total_payable_to_coagent); 
+
+                    }
+                    else if(coagent_company_portion_type == 2)
+                    {
+                        var pro_fee = parseFloat($("#pro_fee").val());
+
+                        var coagent_portion_amount_raw = pro_fee * coagent_company_portion_value / 100;
+                        var coagent_portion_amount = coagent_portion_amount_raw.toFixed(2);
+
+                        var coagent_gst_by_landlord_raw = coagent_portion_amount * gst;
+                        var coagent_gst_by_landlord = coagent_gst_by_landlord_raw.toFixed(2);
+
+                        var total_payable_to_coagent_raw = coagent_portion_amount_raw + coagent_gst_by_landlord_raw;
+                        var total_payable_to_coagent = total_payable_to_coagent_raw.toFixed(2);
+
+                        $("#coagent_portion_amount_2").val(coagent_portion_amount_raw);
+
+                        $("#total_payable_to_coagent").val(total_payable_to_coagent);
+
+                    }
+
+
+
+            });
 
             //
 
