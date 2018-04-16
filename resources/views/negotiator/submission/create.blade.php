@@ -744,7 +744,7 @@
             var options_pro_fee = {
                 callback: function (value) { 
 
-                    if(value == '')
+                    if($('#gst_by_landlord_vendor').val() == '')
                     {
                         var gst = 0;
                     }
