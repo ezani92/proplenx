@@ -125,7 +125,7 @@
                                                     <div class="form-group xs-pt-10">
                                                         <label><strong>GST by Landlord/ Vendor (RM)</strong>
                                                             <code>[6% of Professional Fee]</code></label>
-                                                        <input type="number" step="0.01" id="gst_by_landlord_vendor" name="gst_by_landlord_vendor" class="form-control">
+                                                        <input type="number" step="0.01" placeholder="If Applicable" id="gst_by_landlord_vendor" name="gst_by_landlord_vendor" class="form-control">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
@@ -744,13 +744,11 @@
             var options_pro_fee = {
                 callback: function (value) { 
 
-                    var pro_fee_gst_raw = parseFloat(value) + (parseFloat(value) * 6 / 100);
+                    var gst = parseFloat($('#gst_by_landlord_vendor').val());
+
+                    var pro_fee_gst_raw = parseFloat(value) + gst;
                     var pro_fee_gst = pro_fee_gst_raw.toFixed(2);
                     $("#pro_fee_gst").val(pro_fee_gst);
-
-                    var gst_by_landlord_vendor_raw = parseFloat(value) * (6/100);
-                    var gst_by_landlord_vendor = gst_by_landlord_vendor_raw.toFixed(2);
-                    $("#gst_by_landlord_vendor").val(gst_by_landlord_vendor);
 
                     var amount_to_invoice_landlord_raw = parseFloat($("#pro_fee_gst").val());
                     var amount_to_invoice_landlord = amount_to_invoice_landlord_raw.toFixed(2);
@@ -800,9 +798,38 @@
                 captureLength: 1
             }
 
+            var options_gst_by_landlord_vendor = {
+                callback: function (value) { 
+
+                    if(value == '')
+                    {
+                        var gst = 0;
+                    }
+                    else
+                    {
+                        var gst = parseFloat(value);
+                    }
+
+                    var pro_fee_gst_raw = parseFloat($('#pro_fee').val()) + gst;
+                    var pro_fee_gst = pro_fee_gst_raw.toFixed(2);
+                    $("#pro_fee_gst").val(pro_fee_gst);
+
+                    var amount_to_invoice_landlord_raw = parseFloat($("#pro_fee").val()) + gst;
+                    var amount_to_invoice_landlord = amount_to_invoice_landlord_raw.toFixed(2);
+                    $("#amount_to_invoice_landlord").val(amount_to_invoice_landlord);
+
+                },
+                wait: 750,
+                highlight: true,
+                allowSubmit: false,
+                captureLength: 1
+            }
+
             $("#pro_fee").typeWatch( options_pro_fee );
 
             $("#stamp_duty").typeWatch( options_stamp_duty );
+
+            $("#gst_by_landlord_vendor").typeWatch( options_gst_by_landlord_vendor );
 
             // Internal Cobroke Calculation - DONE
 
