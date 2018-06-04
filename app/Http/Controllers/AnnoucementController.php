@@ -42,7 +42,7 @@ class AnnoucementController extends Controller
 
         foreach($users as $user)
         {
-            $user->notify(new Annoucement($input));
+            $user->notify(new Annoucement($input,$user));
         }
 
         return redirect('admin/annoucement');

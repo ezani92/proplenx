@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        @include('negotiator.header')
+        @include('admin.header')
             <div class="be-content">
                 <div class="main-content container-fluid">
                     @if(Session::has('message'))
@@ -270,8 +270,10 @@
                         </div>
                         <div class="modal-body">
                             <div class="">
-                                <form>
+                                <form method="post" action="{{ url('/admin/submission/status') }}">
                                     <div class="form-group">
+                                        @csrf
+                                        <input type="hidden" name="submission_id" value="{{ $submission->id }}">
                                         <label>Status</label>
                                         <select class="form-control" name="status" id="status">
                                             <option value="1">Pending</option>
@@ -289,13 +291,10 @@
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <label>Documents</label>
-                                        <input type="file" class="form-control" name="document">
-                                    </div>
-                                    <div class="form-group">
                                         <label>Remarks</label>
-                                        <textarea class="form-control"></textarea>
+                                        <textarea name="remarks" class="form-control"></textarea>
                                     </div>
+                                    <button type="submit" class="btn btn-info btn-block">Update</button>
                                 </form>
                             </div>
                         </div>
@@ -323,7 +322,7 @@
                 </div>
             </div>
         </div>
-        @include('negotiator.footer')
+        @include('admin.footer')
         <script type="text/javascript">
             $("#status").val({{$submission->status}});
         </script>

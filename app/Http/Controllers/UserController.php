@@ -8,6 +8,7 @@ use DataTables;
 use DB;
 use Carbon\Carbon;
 use App\User;
+use App\Submission;
 use Session;
 use Mail;
 use App\Mail\NewNegotiator;
@@ -176,6 +177,13 @@ class UserController extends Controller
     public function destroy($id)
     {
         $user = User::find($id);
+
+        foreach($user->submissions as $submission)
+        {
+            $submission->documents()->delete();
+        }
+
+        $user->submissions()->delete();
         $user->delete();
 
         Session::flash('message', 'Account successfuly deleted. Related Submission Also deleted.'); 

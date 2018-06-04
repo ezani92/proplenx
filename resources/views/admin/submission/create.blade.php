@@ -52,9 +52,12 @@
                                                             <option value="3">Pending/ Outstanding CoAgency Payment</option>
                                                             <option value="4">Pending/ Outstanding Referral Invoice</option>
                                                             <option value="5">Pending/ Outstanding Bank-in Slip</option>
-                                                            <option value="6">Payment from Landlord</option>\
-                                                            <option value="8">Admin Refer Remark</option>\
-                                                            <option value="10">Ready for Commission Payment </option>\
+                                                            <option value="6">Payment from Landlord</option>
+                                                            <option value="7">Negotiator Refer Remark </option>
+                                                            <option value="8">Admin Refer Remark</option>
+                                                            <option value="9">Aborted</option>
+                                                            <option value="10">Ready for Commission Payment </option>
+                                                            <option value="11">Paid</option>
                                                             <option value="12">Admin to Issue Invoice &/or Receipt </option>
                                                         </select>
                                                     </div>

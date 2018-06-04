@@ -134,7 +134,7 @@
             
                 swal({
                     title: 'Are you sure?',
-                    text: "All submission related to this negotiator also will be deleted",
+                    text: "All submission & documents related to this negotiator also will be deleted!",
                     type: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',

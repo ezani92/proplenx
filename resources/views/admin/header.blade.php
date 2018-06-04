@@ -19,6 +19,7 @@
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.2/sweetalert2.min.css">
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css">
         <link rel="stylesheet" href="{{ secure_asset('assets/css/style.css') }}" type="text/css"/>
+        {!! Charts::styles() !!}
     </head>
     <body>
         <div class="be-wrapper be-fixed-sidebar">
@@ -70,22 +71,11 @@
                                                             </li>
 
                                                         @endforeach
-                                                        @foreach(Auth::user()->readNotifications as $notification)
-                                                            <li class="notification s"> 
-                                                                <a href="#">
-                                                                    <div class="image"><img src="{{ secure_asset('assets/img/annoucement.png') }}" alt="Avatar"></div>
-                                                                    <div class="notification-info">
-                                                                        <div class="text"><span class="user-name">Annoucement!</span> {{ $notification->data['title'] }} - {{ $notification->data['body'] }}</div>
-                                                                        <span class="date">{{ $notification->created_at->diffForHumans() }}</span>
-                                                                    </div>
-                                                                </a>
-                                                            </li>
-                                                        @endforeach
                                                     </ul>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="footer"> <a href="#">View all notifications</a></div>
+                                        <div class="footer"> <a href="{{ url('admin/notification') }}">View all notifications</a></div>
                                     </li>
                                 </ul>
                             </li>
@@ -107,7 +97,14 @@
                                     <li class="parent {{ Request::is('admin/submission*') ? 'active' : '' }}">
                                         <a href="#"><i class="icon mdi mdi-collection-text"></i><span>Submission</span></a>
                                         <ul class="sub-menu">
-                                            <li><a href="{{ url('admin/submission') }}">All Submission</a></li>
+                                            <li><a href="{{ url('admin/submission') }}">All Submission</a>
+                                            </li>
+                                            <li><a href="{{ url('admin/submission?type=pending') }}">Pending</a>
+                                            </li>
+                                            <li><a href="{{ url('admin/submission?type=processing') }}">Processing</a>
+                                            </li>
+                                            <li><a href="{{ url('admin/submission?type=paid') }}">Paid</a>
+                                            </li>
                                         </ul>
                                     </li>
                                     <li class="{{ Request::is('admin/report*') ? 'active' : '' }}">
@@ -124,9 +121,9 @@
                                     <li class="{{ Request::is('admin/annoucement') ? 'active' : '' }}">
                                         <a href="{{ url('admin/annoucement') }}"><i class="icon mdi mdi-notifications"></i><span>Announcement</span></a>
                                     </li>
-                                    <li class="{{ Request::is('admin/settings*') ? 'active' : '' }}">
+                                    {{-- <li class="{{ Request::is('admin/settings*') ? 'active' : '' }}">
                                         <a href="{{ url('admin/settings') }}"><i class="icon mdi mdi-wrench"></i><span>Site Settings</span></a>
-                                    </li>
+                                    </li> --}}
                                 </ul>
                             </div>
                         </div>

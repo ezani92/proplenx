@@ -31,6 +31,12 @@ Route::get('/', function () {
     
 });
 
+//Public Route
+
+Route::get('/ban', 'PublicController@ban');
+
+//End Public Route
+
 Auth::routes();
 
 Route::middleware(['isadmin'])->group(function () {
@@ -52,17 +58,27 @@ Route::middleware(['isadmin'])->group(function () {
     Route::get('/admin/user/{user_id}/activated', 'UserController@activated');
     Route::get('/admin/user/{user_id}/delete', 'UserController@destroy');
 
+    Route::get('/admin/submission', 'SubmissionController@index');
+    Route::get('/admin/submission/data', 'SubmissionController@dataAdmin');
+    Route::get('/admin/submission/{submission_id}', 'SubmissionController@show');
+    Route::post('/admin/submission/status', 'SubmissionController@update');
+
+    Route::get('/admin/report', 'ReportController@index');
+
+    Route::get('/admin/notification', 'NotificationController@index');
+    Route::get('/admin/notification/{notification_id}/mark-read', 'NotificationController@delete');
+
     Route::get('/admin/annoucement', 'AnnoucementController@index');
     Route::post('/admin/annoucement', 'AnnoucementController@store');
 });
 
-Route::middleware(['isnegotiator'])->group(function () {
+Route::middleware(['isnegotiator','isactive'])->group(function () {
     
     Route::get('/negotiator', 'DashboardController@index');
 
     Route::get('/negotiator/submission/create', 'SubmissionController@create');
     Route::get('/negotiator/submission', 'SubmissionController@index');
-    Route::get('/negotiator/submission/data', 'SubmissionController@data');
+    Route::get('/negotiator/submission/data', 'SubmissionController@dataNegotiator');
     Route::post('/negotiator/submission', 'SubmissionController@store');
     Route::get('/negotiator/submission/{submission_id}', 'SubmissionController@show');
     

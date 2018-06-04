@@ -35,4 +35,9 @@ class User extends Authenticatable
 
         return 'A'.$number;
     }
+
+    public function submissions()
+    {
+        return $this->hasMany('App\Submission');
+    }
 }

@@ -9,6 +9,7 @@ use Auth;
 use Session;
 use Illuminate\Http\Request;
 use App\Notifications\SubmissionNew;
+use App\Notifications\SubmissionUpdate;
 use DataTables;
 use Carbon\Carbon;
 
@@ -21,12 +22,114 @@ class SubmissionController extends Controller
      */
     public function index()
     {
-        return view('negotiator.submission.index');
+        $auth = \Auth::user();
+
+        if($auth->role == 1)
+        {
+            return view('admin.submission.index');
+        }
+        else if($auth->role == 2)
+        {
+            return view('negotiator.submission.index');
+        }
     }
 
-    public function data(Datatables $datatables)
+    public function dataAdmin(Datatables $datatables,Request $request)
     {
-        $submissions = Submission::All();
+        $input = $request->all();
+
+        if($input['type'] == 'all')
+        {
+            $submissions = Submission::All();
+        }
+        else if($input['type'] == 'pending')
+        {
+            $submissions = Submission::where('status','>',1)->where('status','<=',5)->get();
+        }
+        else if($input['type'] == 'processing')
+        {
+            $submissions = Submission::where('status','>',5)->where('status','<=',10)->get();
+        }
+        else if($input['type'] == 'paid')
+        {
+            $submissions = Submission::where('status',11)->get();
+        }
+
+        return Datatables::of($submissions)
+            ->editColumn('negotiator_id', function ($submission) {
+                return $submission->user->agent_code;
+            })
+            ->editColumn('negotiator_name', function ($submission) {
+                return $submission->user->name;
+            })
+            ->editColumn('status', function ($submission) {
+                
+                if($submission->status == 1)
+                {
+                    return '<span class="label label-default">Pending / Outstanding</span>';
+                }
+                else if($submission->status == 2)
+                {
+                    return '<span class="label label-default">CoNegotiator Invoice</span>';
+                }
+                else if($submission->status == 3)
+                {
+                    return '<span class="label label-default">CoAgency Payment</span>';
+                }
+                else if($submission->status == 4)
+                {
+                    return '<span class="label label-default">Referral Invoice</span>';
+                }
+                else if($submission->status == 5)
+                {
+                    return '<span class="label label-default">Bank-in Slip</span>';
+                }
+                else if($submission->status == 6)
+                {
+                    return '<span class="label label-default">Payment from Landlord</span>';
+                }
+                else if($submission->status == 7)
+                {
+                    return '<span class="label label-default">Negotiator Refer Remark </span>';
+                }
+                else if($submission->status == 8)
+                {
+                    return '<span class="label label-default">Admin Refer Remark</span>';
+                }
+                else if($submission->status == 9)
+                {
+                    return '<span class="label label-danger">Aborted</span>';
+                }
+                else if($submission->status == 10)
+                {
+                    return '<span class="label label-default">Ready for Commission Payment</span>';
+                }
+                else if($submission->status == 11)
+                {
+                    return '<span class="label label-success">Paid</span>';
+                }
+                else if($submission->status == 12)
+                {
+                    return '<span class="label label-default">Admin to Issue Invoice &/or Receipt </span>';
+                }
+
+            })
+            ->addColumn('actions', function($submission) {
+                return view('admin.submission.action', compact('submission'))->render();
+            })
+            ->editColumn('created_at', function ($submission) {
+                return $submission->created_at ? with(new Carbon($submission->created_at))->format('d M Y, h:i A') : '';
+            })
+            ->rawColumns(['actions','status'])
+            ->make(true);
+    }
+
+    public function dataNegotiator(Datatables $datatables)
+    {
+        $auth = \Auth::user();
+
+        $submissions = Submission::where('user_id',$auth->id)->latest();
+
         return Datatables::of($submissions)
             ->editColumn('status', function ($submission) {
                 
@@ -237,8 +340,18 @@ class SubmissionController extends Controller
     public function show(Submission $submission,$submission_id)
     {
         $submission = Submission::find($submission_id);
+        $auth = \Auth::user();
 
-        return view('negotiator.submission.show',compact('submission'));
+        if($auth->role == 1)
+        {
+            return view('admin.submission.show',compact('submission'));
+        }
+        else if($auth->role == 2)
+        {
+            return view('negotiator.submission.show',compact('submission'));
+        }
+
+        
     }
 
     /**
@@ -261,7 +374,20 @@ class SubmissionController extends Controller
      */
     public function update(Request $request, Submission $submission)
     {
-        //
+        $input = $request->all();
+
+        $submission = Submission::find($input['submission_id']);
+        $submission->status = $input['status'];
+        $submission->save();
+
+        Session::flash('message', 'Submission status updated! An Email has been sent to negotiator!'); 
+        Session::flash('alert-class', 'alert-success');
+
+        $user = User::find($submission->user->id);
+        $user->notify(new SubmissionUpdate($submission));
+
+        return redirect('admin/submission/'.$input['submission_id']);
+
     }
 
     /**

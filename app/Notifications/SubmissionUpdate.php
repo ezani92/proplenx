@@ -7,22 +7,20 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class Annoucement extends Notification implements ShouldQueue
+class SubmissionUpdate extends Notification implements ShouldQueue
 {
     use Queueable;
 
-    public $input;
-    public $user;
+     public $submission;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($input,$user)
+    public function __construct($submission)
     {
-        $this->input = $input;
-        $this->user = $user;
+        $this->submission = $submission;
     }
 
     /**
@@ -33,7 +31,7 @@ class Annoucement extends Notification implements ShouldQueue
      */
     public function via($notifiable)
     {
-        return ['database','mail'];
+        return ['mail'];
     }
 
     /**
@@ -44,10 +42,7 @@ class Annoucement extends Notification implements ShouldQueue
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)
-            ->from('noreply@proplenx.com', 'Proplenx')
-            ->subject('Proplenx Annoucement')
-            ->markdown('mail.notification.index', ['input' => $this->input, 'user' => $this->user]);
+        return (new MailMessage)->markdown('mail.submission.update',['submission' => $this->submission]);
     }
 
     /**
@@ -59,8 +54,7 @@ class Annoucement extends Notification implements ShouldQueue
     public function toArray($notifiable)
     {
         return [
-            'title' => $this->input['title'],
-            'body' => $this->input['body'],
+            //
         ];
     }
 }

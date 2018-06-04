@@ -1,0 +1,1 @@
+<a href="{{ URL::to('admin/submission/'.$submission->id) }}" class="btn btn-xs btn-info">View</a>
