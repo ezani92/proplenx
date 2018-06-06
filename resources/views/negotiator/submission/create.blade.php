@@ -96,7 +96,7 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group xs-pt-10">
                                                         <label><strong>Amount Banked In To Proplenx</strong></label>
-                                                        <input type="number" step="0.01" id="amount_bank_in_to_proplex" name="amount_bank_in_to_proplex" class="form-control" required>
+                                                        <input type="text" step="0.01" id="amount_bank_in_to_proplex" name="amount_bank_in_to_proplex" class="form-control" required>
                                                     </div>
                                                 </div>
                                             </div>
@@ -104,7 +104,7 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group xs-pt-10">
                                                         <label><strong>Professional Fee (RM)</strong></label>
-                                                        <input type="number" step="0.01" id="pro_fee" name="pro_fee" class="form-control" required>
+                                                        <input type="text" step="0.01" id="pro_fee" name="pro_fee" class="form-control" required>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
@@ -113,7 +113,7 @@
                                                             <strong>Professional Fee has included GST</strong>
                                                             <code>[Professional Fee x GST]</code>
                                                         </label>
-                                                        <input type="number" id="pro_fee_gst" class="form-control" name="pro_fee_gst" readonly="true">
+                                                        <input type="text" id="pro_fee_gst" class="form-control" name="pro_fee_gst" readonly="true">
                                                     </div>
                                                 </div>
                                             </div>
@@ -132,7 +132,7 @@
                                                     <div class="form-group xs-pt-10">
                                                         <label><strong>Amount to Invoice Landlord/ Vendor (RM)</strong>
                                                             <code>[Professional Fee + GST]</code></label>
-                                                        <input type="number" tep="0.01" id="amount_to_invoice_landlord" name="amount_to_invoice_landlord" class="form-control" readonly="true">
+                                                        <input type="text" tep="0.01" id="amount_to_invoice_landlord" name="amount_to_invoice_landlord" class="form-control" readonly="true">
                                                     </div>
                                                 </div>
                                             </div>
@@ -140,7 +140,7 @@
                                                 <div class="col-md-12">
                                                     <div class="form-group xs-pt-10">
                                                         <label><strong>Stamp Duty and Tenancy Preparation Fee or Other Reimbursement Fees (RM)</strong></label>
-                                                        <input type="number" step="0.01" id="stamp_duty" name="stamp_duty" class="form-control">
+                                                        <input type="text" step="0.01" id="stamp_duty" name="stamp_duty" class="form-control">
                                                     </div>
                                                 </div>
                                             </div>
@@ -149,14 +149,14 @@
                                                     <div class="form-group xs-pt-10">
                                                         <label><strong>Negotiator's Commission & Marketing Fees (RM)</strong>
                                                             <code>[Commision Percentage x Professional Fee]</code></label>
-                                                        <input type="number" step="0.01" id="negotiator_commision" name="negotiator_commision" class="form-control" readonly="true">
+                                                        <input type="text" step="0.01" id="negotiator_commision" name="negotiator_commision" class="form-control" readonly="true">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group xs-pt-10">
                                                         <label><strong>Balance Due to Landlord / Vendor</strong>
                                                             <code>[Amount Banked In to PropLenx - Amount to Invoice Landlord / Stamp Duty]</code></label>
-                                                        <input type="number" tep="0.01" id="balance_due_landlord_vendor" name="balance_due_landlord_vendor" class="form-control" readonly="true">
+                                                        <input type="text" tep="0.01" id="balance_due_landlord_vendor" name="balance_due_landlord_vendor" class="form-control" readonly="true">
                                                     </div>
                                                 </div>
                                             </div>
@@ -165,14 +165,14 @@
                                                     <div class="form-group xs-pt-10">
                                                         <label><strong>Amount Payable to Negotiator (RM)</strong>
                                                             <code>[Nego Commission + Marketing Fees + Stamp Duty or Other Reimbursement Fees - RM10]</code></label>
-                                                        <input type="number" step="0.01" id="amount_payable_to_negotiator" name="amount_payable_to_negotiator" class="form-control" readonly="true">
+                                                        <input type="text" step="0.01" id="amount_payable_to_negotiator" name="amount_payable_to_negotiator" class="form-control" readonly="true">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group xs-pt-10">
                                                         <label><strong>Balance (RM)</strong>
                                                             <code>[BankIn Amount - (Professional Fees + Stamp Duty or Other Reimbursement Fees + GST Tax) - Balance Payment to Client]</code></label>
-                                                        <input type="number" tep="0.01" id="balance" name="balance" class="form-control" readonly="true">
+                                                        <input type="text" tep="0.01" id="balance" name="balance" class="form-control" readonly="true">
                                                     </div>
                                                 </div>
                                             </div>
@@ -320,7 +320,7 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group xs-pt-10">
                                                         <label><strong>CoAgent Portion Value</strong></label>
-                                                        <input type="number" step="0.01" name="coagent_portion_value" id="coagent_portion_value" placeholder="Type in RM or %" class="form-control">
+                                                        <input type="text" step="0.01" name="coagent_portion_value" id="coagent_portion_value" placeholder="Type in RM or %" class="form-control">
                                                     </div>
                                                 </div>
                                             </div>
@@ -368,7 +368,7 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group xs-pt-10">
                                                         <label><strong>CoAgent Company Portion Value</strong></label>
-                                                        <input type="number" step="0.01" name="coagent_company_portion_value" id="coagent_company_portion_value" placeholder="Type in RM or %" class="form-control">
+                                                        <input type="text" step="0.01" name="coagent_company_portion_value" id="coagent_company_portion_value" placeholder="Type in RM or %" class="form-control">
                                                     </div>
                                                 </div>
                                             </div>
@@ -460,7 +460,7 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group xs-pt-10">
                                                         <label><strong>PropLenx Portion Value</strong></label>
-                                                        <input type="number" step="0.01" name="proplenx_portion_value_2" id="proplenx_portion_value_2" placeholder="Type in RM or %" class="form-control">
+                                                        <input type="text" step="0.01" name="proplenx_portion_value_2" id="proplenx_portion_value_2" placeholder="Type in RM or %" class="form-control">
                                                     </div>
                                                 </div>
                                             </div>
@@ -518,7 +518,7 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group xs-pt-10">
                                                         <label><strong>Referral Bank Account No</strong></label>
-                                                        <input type="number" name="internal_referrel_bankacc" id="internal_referrel_bankacc" class="form-control">
+                                                        <input type="text" name="internal_referrel_bankacc" id="internal_referrel_bankacc" class="form-control">
                                                     </div>
                                                 </div>
                                             </div>
@@ -535,7 +535,7 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group xs-pt-10">
                                                         <label><strong>Referral Portion Value</strong></label>
-                                                        <input type="number" step="0.01" name="internal_referrel_portion_value" id="internal_referrel_portion_value" placeholder="Type in RM or %" class="form-control">
+                                                        <input type="text" step="0.01" name="internal_referrel_portion_value" id="internal_referrel_portion_value" placeholder="Type in RM or %" class="form-control">
                                                     </div>
                                                 </div>
                                             </div>
@@ -607,7 +607,7 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group xs-pt-10">
                                                         <label><strong>Referral Bank Account No</strong></label>
-                                                        <input type="number" name="external_referrel_bankacc" id="external_referrel_bankacc" class="form-control">
+                                                        <input type="text" name="external_referrel_bankacc" id="external_referrel_bankacc" class="form-control">
                                                     </div>
                                                 </div>
                                             </div>
@@ -624,7 +624,7 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group xs-pt-10">
                                                         <label><strong>Referral Portion Value</strong></label>
-                                                        <input type="number" step="0.01" name="external_referrel_portion_value" id="external_referrel_portion_value" placeholder="Type in RM or %" class="form-control">
+                                                        <input type="text" step="0.01" name="external_referrel_portion_value" id="external_referrel_portion_value" placeholder="Type in RM or %" class="form-control">
                                                     </div>
                                                 </div>
                                             </div>
