@@ -63,7 +63,8 @@ Route::middleware(['isadmin'])->group(function () {
     Route::get('/admin/submission/{submission_id}', 'SubmissionController@show');
     Route::post('/admin/submission/status', 'SubmissionController@update');
 
-    Route::get('/admin/report', 'ReportController@index');
+    Route::get('/admin/report', 'ReportController@admin');
+    Route::get('/admin/report/export', 'ReportController@exportAdmin');
 
     Route::get('/admin/notification', 'NotificationController@index');
     Route::get('/admin/notification/{notification_id}/mark-read', 'NotificationController@delete');
@@ -81,6 +82,9 @@ Route::middleware(['isnegotiator','isactive'])->group(function () {
     Route::get('/negotiator/submission/data', 'SubmissionController@dataNegotiator');
     Route::post('/negotiator/submission', 'SubmissionController@store');
     Route::get('/negotiator/submission/{submission_id}', 'SubmissionController@show');
+
+    Route::get('/negotiator/report', 'ReportController@negotiator');
+    Route::get('/negotiator/report/export', 'ReportController@exportNegotiator');
     
 });
 

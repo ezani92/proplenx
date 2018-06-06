@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        @include('admin.header')
+        @include('negotiator.header')
             <div class="be-content">
                 <div class="main-content container-fluid">
                     @if(Session::has('message'))
@@ -10,7 +10,7 @@
 
                     <div class="row">
                         <div class="col-md-12">
-                            <h3>Reports <a href="{{ url('admin/report/export') }}" class="btn btn-success pull-right">Export As Excel</a></h3>
+                            <h3>Reports <a href="{{ url('negotiator/report/export') }}" class="btn btn-success pull-right">Export As Excel</a></h3>
                         </div>
                     </div>
 
@@ -30,17 +30,6 @@
                             $date_to = '';
                             }
                             @endphp
-                             <div class="col-md-12">
-                                <div class="form-group">
-                                    <label>Agent</label>
-                                    <select class="form-control">
-                                        <option value="0">All</option>
-                                        @foreach(\App\User::where('role',2)->get() as $agent)
-                                            <option value="{{ $agent->id }}">{{ $agent->name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>From</label>
@@ -110,7 +99,7 @@
                     </div>
                 </div>
             </div>
-        @include('admin.footer')
+        @include('negotiator.footer')
         <script type="text/javascript">
             $('.datepicker').datepicker({
                 format: 'dd-mm-yyyy',
