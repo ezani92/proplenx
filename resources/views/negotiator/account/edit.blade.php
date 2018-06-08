@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        @include('admin.header')
+        @include('negotiator.header')
             <div class="be-content">
                 <div class="main-content container-fluid">
                     @if(Session::has('message'))
@@ -13,7 +13,7 @@
                             <div class="panel panel-border-color panel-border-color-primary">
                                 <div class="panel-heading">Account</div>
                                 <div class="panel-body">
-                                    <form method="post" action="{{ url('admin/account') }}">
+                                    <form method="post" action="{{ url('negotiator/account') }}">
                                         {{ csrf_field() }}
                                         <input type="hidden" name="user_id" value="{{ $user->id }}">
                                         <div class="form-group xs-pt-10">
@@ -46,6 +46,6 @@
                     </div>
                 </div>
             </div>
-        @include('admin.footer')
+        @include('negotiator.footer')
     </body>
 </html>

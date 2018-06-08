@@ -82,9 +82,25 @@ Route::middleware(['isnegotiator','isactive'])->group(function () {
     Route::get('/negotiator/submission/data', 'SubmissionController@dataNegotiator');
     Route::post('/negotiator/submission', 'SubmissionController@store');
     Route::get('/negotiator/submission/{submission_id}', 'SubmissionController@show');
+    Route::get('/negotiator/submission/{submission_id}/edit', 'SubmissionController@edit');
+    Route::patch('/negotiator/submission/{submission_id}/update', 'SubmissionController@patch');
 
     Route::get('/negotiator/report', 'ReportController@negotiator');
     Route::get('/negotiator/report/export', 'ReportController@exportNegotiator');
+
+    Route::get('/negotiator/account', 'AccountController@edit');
+    Route::post('/negotiator/account', 'AccountController@update');
+
+    Route::get('/negotiator/eform/authorization-to-sell', 'EformController@authorizationToSell');
+    Route::post('/negotiator/eform/authorization-to-sell', 'EformController@CreateauthorizationToSell');
+
+    Route::get('/negotiator/eform/offer-to-purchase', 'EformController@offerToPurchase');
+    Route::post('/negotiator/eform/offer-to-purchase', 'EformController@CreateofferToPurchase');
+
+    Route::get('/negotiator/eform/offer-to-rent', 'EformController@offerToRent');
+    Route::post('/negotiator/eform/offer-to-rent', 'EformController@CreateofferToRent');
+
+
     
 });
 

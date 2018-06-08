@@ -360,9 +360,39 @@ class SubmissionController extends Controller
      * @param  \App\Submission  $submission
      * @return \Illuminate\Http\Response
      */
-    public function edit(Submission $submission)
+    public function edit(Submission $submission,$submission_id)
     {
-        //
+        $users = User::all();
+        $submission = Submission::find($submission_id);
+
+        return view('negotiator.submission.edit',[
+            'users' => $users,
+            'submission' => $submission
+        ]);
+    }
+
+    public function patch(Request $request, Submission $submission, $submission_id)
+    {
+        $input = $request->all();
+
+        $submission = Submission::find($submission_id);
+        $submission->landlord_vendor_name = $input['landlord_vendor_name'];
+        $submission->landlord_vendor_ic_no = $input['landlord_vendor_ic_no'];
+        $submission->landlord_vendor_address = $input['landlord_vendor_address'];
+        $submission->landlord_vendor_bank_name = $input['landlord_vendor_bank_name'];
+        $submission->landlord_vendor_acc_no = $input['landlord_vendor_acc_no'];
+        $submission->tennant_purchaser_name = $input['tennant_purchaser_name'];
+        $submission->tennant_purchaser_ic_no = $input['tennant_purchaser_ic_no'];
+        $submission->tennant_purchaser_address = $input['tennant_purchaser_address'];
+        $submission->tennant_purchaser_bank_name = $input['tennant_purchaser_bank_name'];
+        $submission->tennant_purchaser_acc_no = $input['tennant_purchaser_acc_no'];
+        $submission->save();
+
+        Session::flash('message', 'Submission details updated!'); 
+        Session::flash('alert-class', 'alert-success');
+
+        return redirect('negotiator/submission/'.$submission_id);
+
     }
 
     /**
@@ -377,6 +407,10 @@ class SubmissionController extends Controller
         $input = $request->all();
 
         $submission = Submission::find($input['submission_id']);
+
+        $old_status = self::getStatus($submission->status);
+        $new_status = self::getStatus($input['status']);
+
         $submission->status = $input['status'];
         $submission->save();
 
@@ -384,7 +418,7 @@ class SubmissionController extends Controller
         Session::flash('alert-class', 'alert-success');
 
         $user = User::find($submission->user->id);
-        $user->notify(new SubmissionUpdate($submission));
+        $user->notify(new SubmissionUpdate($submission,$old_status,$new_status));
 
         return redirect('admin/submission/'.$input['submission_id']);
 
@@ -399,5 +433,35 @@ class SubmissionController extends Controller
     public function destroy(Submission $submission)
     {
         //
+    }
+
+    private function getStatus($id)
+    {
+        switch ($id) {
+            case "1":
+                return 'Pending';
+            case "2":
+                return 'Pending CoNegotiator Invoice';
+            case "3":
+                return 'Pending CoAgency Payment';
+            case "4":
+                return 'Pending Referral Invoice';
+            case "5":
+                return 'Pending Bank-in Slip';
+            case "6":
+                return 'Payment from Landlord';
+            case "7":
+                return 'Negotiator Refer Remark';
+            case "8":
+                return 'Admin Refer Remark';
+            case "9":
+                return 'Aborted';
+            case "10":
+                return 'Ready for Commission Payment';
+            case "11":
+                return 'Paid';
+            case "12":
+                return 'Admin to Issue Invoice &/or Receipt';
+        }
     }
 }

@@ -115,6 +115,20 @@
                                     <li class="{{ Request::is('negotiator/report*') ? 'active' : '' }}">
                                         <a href="{{ url('negotiator/report') }}"><i class="icon mdi mdi-chart"></i><span>Report</span></a>
                                     </li>
+                                    <li class="parent {{ Request::is('negotiator/eform*') ? 'active' : '' }}">
+                                        <a href="#"><i class="icon mdi mdi-cloud-outline-alt"></i><span>e-Form</span></a>
+                                        <ul class="sub-menu">
+                                            <li class="{{ Request::is('negotiator/eform/authorization-to-sell') ? 'active' : '' }}">
+                                                <a href="{{ url('negotiator/eform/authorization-to-sell') }}">Authorization To Sell</a>
+                                            </li>
+                                            <li class="{{ Request::is('negotiator/eform/offer-to-purchase') ? 'active' : '' }}">
+                                                <a href="{{ url('negotiator/eform/offer-to-purchase') }}">Offer To Purchase</a>
+                                            </li>
+                                            <li class="{{ Request::is('negotiator/eform/offer-to-rent') ? 'active' : '' }}">
+                                                <a href="{{ url('negotiator/eform/offer-to-rent') }}">Offer To Rent</a>
+                                            </li>
+                                        </ul>
+                                    </li>
                                 </ul>
                             </div>
                         </div>

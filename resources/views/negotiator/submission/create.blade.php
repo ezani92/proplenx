@@ -209,19 +209,25 @@
                                                     <div class="form-group xs-pt-10">
                                                         <label><strong>Bank Name</strong></label>
                                                         <select class="form-control" name="landlord_vendor_bank_name" required>
-                                                            <option value="Maybank">Maybank</option>
-                                                            <option value="CIMB">CIMB</option>
-                                                            <option value="Public Bank Berhad">Public Bank Berhad</option>
-                                                            <option value="RHB Bank">RHB Bank</option>
-                                                            <option value="Hong Leong Bank">Hong Leong Bank</option>
-                                                            <option value="AmBank">AmBank</option>
-                                                            <option value="United Overseas Bank">United Overseas Bank</option>
-                                                            <option value="Bank Rakyat">Bank Rakyat</option>
-                                                            <option value="OCBC Bank">OCBC Bank</option>
-                                                            <option value="HSBC">HSBC</option>
-                                                            <option value="Bank Islam">Bank Islam</option>
+                                                            <option value="AMBank">AMBank</option>
+                                                            <option value="Affin Bank Berhad">Affin Bank Berhad</option>
+                                                            <option value="Alliance Bank Malaysia Berhad">Alliance Bank Malaysia Berhad</option>
+                                                            <option value="Al-Rajhi Bank">Al-Rajhi Bank</option>
+                                                            <option value="Bank Islam Malaysia Berhad">Bank Islam Malaysia Berhad</option>
+                                                            <option value="Bank Kerjasama Rakyat Malaysia">Bank Kerjasama Rakyat Malaysia</option>
+                                                            <option value="Bank Muamalat Malaysia Berhad">Bank Muamalat Malaysia Berhad</option>
+                                                            <option value="Bank Pertanian Malaysia Bhd">Bank Pertanian Malaysia Bhd</option>
                                                             <option value="Bank Simpanan Nasional">Bank Simpanan Nasional</option>
-                                                            <option value="Affin Bank">Affin Bank</option>
+                                                            <option value="CIMB">CIMB</option>
+                                                            <option value="Citibank Berhad">Citibank Berhad</option>
+                                                            <option value="Hong Leong Bank Berhad">Hong Leong Bank Berhad</option>
+                                                            <option value="HSBC Bank">HSBC Bank</option>
+                                                            <option value="Kuwait Finance House">Kuwait Finance House</option>
+                                                            <option value="Maybank">Maybank</option>
+                                                            <option value="OCBC Bank (M) Berhad">OCBC Bank (M) Berhad</option>
+                                                            <option value="Public Bank">Public Bank</option>
+                                                            <option value="Standard Chartered Bank">Standard Chartered Bank</option>
+                                                            <option value="United Overseas Bank Berhad">United Overseas Bank Berhad</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -265,19 +271,25 @@
                                                     <div class="form-group xs-pt-10">
                                                         <label><strong>Bank Name</strong></label>
                                                         <select class="form-control" name="tennant_purchaser_bank_name" required>
-                                                            <option value="Maybank">Maybank</option>
-                                                            <option value="CIMB">CIMB</option>
-                                                            <option value="Public Bank Berhad">Public Bank Berhad</option>
-                                                            <option value="RHB Bank">RHB Bank</option>
-                                                            <option value="Hong Leong Bank">Hong Leong Bank</option>
-                                                            <option value="AmBank">AmBank</option>
-                                                            <option value="United Overseas Bank">United Overseas Bank</option>
-                                                            <option value="Bank Rakyat">Bank Rakyat</option>
-                                                            <option value="OCBC Bank">OCBC Bank</option>
-                                                            <option value="HSBC">HSBC</option>
-                                                            <option value="Bank Islam">Bank Islam</option>
+                                                           <option value="AMBank">AMBank</option>
+                                                            <option value="Affin Bank Berhad">Affin Bank Berhad</option>
+                                                            <option value="Alliance Bank Malaysia Berhad">Alliance Bank Malaysia Berhad</option>
+                                                            <option value="Al-Rajhi Bank">Al-Rajhi Bank</option>
+                                                            <option value="Bank Islam Malaysia Berhad">Bank Islam Malaysia Berhad</option>
+                                                            <option value="Bank Kerjasama Rakyat Malaysia">Bank Kerjasama Rakyat Malaysia</option>
+                                                            <option value="Bank Muamalat Malaysia Berhad">Bank Muamalat Malaysia Berhad</option>
+                                                            <option value="Bank Pertanian Malaysia Bhd">Bank Pertanian Malaysia Bhd</option>
                                                             <option value="Bank Simpanan Nasional">Bank Simpanan Nasional</option>
-                                                            <option value="Affin Bank">Affin Bank</option>
+                                                            <option value="CIMB">CIMB</option>
+                                                            <option value="Citibank Berhad">Citibank Berhad</option>
+                                                            <option value="Hong Leong Bank Berhad">Hong Leong Bank Berhad</option>
+                                                            <option value="HSBC Bank">HSBC Bank</option>
+                                                            <option value="Kuwait Finance House">Kuwait Finance House</option>
+                                                            <option value="Maybank">Maybank</option>
+                                                            <option value="OCBC Bank (M) Berhad">OCBC Bank (M) Berhad</option>
+                                                            <option value="Public Bank">Public Bank</option>
+                                                            <option value="Standard Chartered Bank">Standard Chartered Bank</option>
+                                                            <option value="United Overseas Bank Berhad">United Overseas Bank Berhad</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -385,19 +397,25 @@
                                                     <div class="form-group xs-pt-10">
                                                         <label><strong>CoAgent Company Bank Name</strong></label>
                                                         <select class="form-control" name="coagent_company_bank_name" id="coagent_company_bank_name" required>
-                                                            <option value="Maybank">Maybank</option>
-                                                            <option value="CIMB">CIMB</option>
-                                                            <option value="Public Bank Berhad">Public Bank Berhad</option>
-                                                            <option value="RHB Bank">RHB Bank</option>
-                                                            <option value="Hong Leong Bank">Hong Leong Bank</option>
-                                                            <option value="AmBank">AmBank</option>
-                                                            <option value="United Overseas Bank">United Overseas Bank</option>
-                                                            <option value="Bank Rakyat">Bank Rakyat</option>
-                                                            <option value="OCBC Bank">OCBC Bank</option>
-                                                            <option value="HSBC">HSBC</option>
-                                                            <option value="Bank Islam">Bank Islam</option>
+                                                            <option value="AMBank">AMBank</option>
+                                                            <option value="Affin Bank Berhad">Affin Bank Berhad</option>
+                                                            <option value="Alliance Bank Malaysia Berhad">Alliance Bank Malaysia Berhad</option>
+                                                            <option value="Al-Rajhi Bank">Al-Rajhi Bank</option>
+                                                            <option value="Bank Islam Malaysia Berhad">Bank Islam Malaysia Berhad</option>
+                                                            <option value="Bank Kerjasama Rakyat Malaysia">Bank Kerjasama Rakyat Malaysia</option>
+                                                            <option value="Bank Muamalat Malaysia Berhad">Bank Muamalat Malaysia Berhad</option>
+                                                            <option value="Bank Pertanian Malaysia Bhd">Bank Pertanian Malaysia Bhd</option>
                                                             <option value="Bank Simpanan Nasional">Bank Simpanan Nasional</option>
-                                                            <option value="Affin Bank">Affin Bank</option>
+                                                            <option value="CIMB">CIMB</option>
+                                                            <option value="Citibank Berhad">Citibank Berhad</option>
+                                                            <option value="Hong Leong Bank Berhad">Hong Leong Bank Berhad</option>
+                                                            <option value="HSBC Bank">HSBC Bank</option>
+                                                            <option value="Kuwait Finance House">Kuwait Finance House</option>
+                                                            <option value="Maybank">Maybank</option>
+                                                            <option value="OCBC Bank (M) Berhad">OCBC Bank (M) Berhad</option>
+                                                            <option value="Public Bank">Public Bank</option>
+                                                            <option value="Standard Chartered Bank">Standard Chartered Bank</option>
+                                                            <option value="United Overseas Bank Berhad">United Overseas Bank Berhad</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -499,19 +517,25 @@
                                                     <div class="form-group xs-pt-10">
                                                         <label><strong>Referral Bank Name</strong></label>
                                                         <select class="form-control" name="internal_referrel_bankname" id="internal_referrel_bankname" required>
-                                                            <option value="Maybank">Maybank</option>
-                                                            <option value="CIMB">CIMB</option>
-                                                            <option value="Public Bank Berhad">Public Bank Berhad</option>
-                                                            <option value="RHB Bank">RHB Bank</option>
-                                                            <option value="Hong Leong Bank">Hong Leong Bank</option>
-                                                            <option value="AmBank">AmBank</option>
-                                                            <option value="United Overseas Bank">United Overseas Bank</option>
-                                                            <option value="Bank Rakyat">Bank Rakyat</option>
-                                                            <option value="OCBC Bank">OCBC Bank</option>
-                                                            <option value="HSBC">HSBC</option>
-                                                            <option value="Bank Islam">Bank Islam</option>
+                                                            <option value="AMBank">AMBank</option>
+                                                            <option value="Affin Bank Berhad">Affin Bank Berhad</option>
+                                                            <option value="Alliance Bank Malaysia Berhad">Alliance Bank Malaysia Berhad</option>
+                                                            <option value="Al-Rajhi Bank">Al-Rajhi Bank</option>
+                                                            <option value="Bank Islam Malaysia Berhad">Bank Islam Malaysia Berhad</option>
+                                                            <option value="Bank Kerjasama Rakyat Malaysia">Bank Kerjasama Rakyat Malaysia</option>
+                                                            <option value="Bank Muamalat Malaysia Berhad">Bank Muamalat Malaysia Berhad</option>
+                                                            <option value="Bank Pertanian Malaysia Bhd">Bank Pertanian Malaysia Bhd</option>
                                                             <option value="Bank Simpanan Nasional">Bank Simpanan Nasional</option>
-                                                            <option value="Affin Bank">Affin Bank</option>
+                                                            <option value="CIMB">CIMB</option>
+                                                            <option value="Citibank Berhad">Citibank Berhad</option>
+                                                            <option value="Hong Leong Bank Berhad">Hong Leong Bank Berhad</option>
+                                                            <option value="HSBC Bank">HSBC Bank</option>
+                                                            <option value="Kuwait Finance House">Kuwait Finance House</option>
+                                                            <option value="Maybank">Maybank</option>
+                                                            <option value="OCBC Bank (M) Berhad">OCBC Bank (M) Berhad</option>
+                                                            <option value="Public Bank">Public Bank</option>
+                                                            <option value="Standard Chartered Bank">Standard Chartered Bank</option>
+                                                            <option value="United Overseas Bank Berhad">United Overseas Bank Berhad</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -588,19 +612,25 @@
                                                     <div class="form-group xs-pt-10">
                                                         <label><strong>Referral Bank Name</strong></label>
                                                         <select class="form-control" name="external_referrel_bankname" id="external_referrel_bankname" required>
-                                                            <option value="Maybank">Maybank</option>
-                                                            <option value="CIMB">CIMB</option>
-                                                            <option value="Public Bank Berhad">Public Bank Berhad</option>
-                                                            <option value="RHB Bank">RHB Bank</option>
-                                                            <option value="Hong Leong Bank">Hong Leong Bank</option>
-                                                            <option value="AmBank">AmBank</option>
-                                                            <option value="United Overseas Bank">United Overseas Bank</option>
-                                                            <option value="Bank Rakyat">Bank Rakyat</option>
-                                                            <option value="OCBC Bank">OCBC Bank</option>
-                                                            <option value="HSBC">HSBC</option>
-                                                            <option value="Bank Islam">Bank Islam</option>
+                                                            <option value="AMBank">AMBank</option>
+                                                            <option value="Affin Bank Berhad">Affin Bank Berhad</option>
+                                                            <option value="Alliance Bank Malaysia Berhad">Alliance Bank Malaysia Berhad</option>
+                                                            <option value="Al-Rajhi Bank">Al-Rajhi Bank</option>
+                                                            <option value="Bank Islam Malaysia Berhad">Bank Islam Malaysia Berhad</option>
+                                                            <option value="Bank Kerjasama Rakyat Malaysia">Bank Kerjasama Rakyat Malaysia</option>
+                                                            <option value="Bank Muamalat Malaysia Berhad">Bank Muamalat Malaysia Berhad</option>
+                                                            <option value="Bank Pertanian Malaysia Bhd">Bank Pertanian Malaysia Bhd</option>
                                                             <option value="Bank Simpanan Nasional">Bank Simpanan Nasional</option>
-                                                            <option value="Affin Bank">Affin Bank</option>
+                                                            <option value="CIMB">CIMB</option>
+                                                            <option value="Citibank Berhad">Citibank Berhad</option>
+                                                            <option value="Hong Leong Bank Berhad">Hong Leong Bank Berhad</option>
+                                                            <option value="HSBC Bank">HSBC Bank</option>
+                                                            <option value="Kuwait Finance House">Kuwait Finance House</option>
+                                                            <option value="Maybank">Maybank</option>
+                                                            <option value="OCBC Bank (M) Berhad">OCBC Bank (M) Berhad</option>
+                                                            <option value="Public Bank">Public Bank</option>
+                                                            <option value="Standard Chartered Bank">Standard Chartered Bank</option>
+                                                            <option value="United Overseas Bank Berhad">United Overseas Bank Berhad</option>
                                                         </select>
                                                     </div>
                                                 </div>

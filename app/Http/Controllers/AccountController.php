@@ -67,7 +67,9 @@ class AccountController extends Controller
         }
         else if(Auth::user()->role == 2)
         {
+            $user = User::find(Auth::user()->id);
 
+            return view('negotiator.account.edit',['user' => $user]);
         }
     }
 
@@ -95,10 +97,18 @@ class AccountController extends Controller
                 Session::flash('message', 'New password not match! Please enter again.'); 
                 Session::flash('alert-class', 'alert-warning');
 
-                return redirect('admin/account');
+                if(Auth::user()->role == 1)
+                {
+                    return redirect('admin/account');
+                }
+                else
+                {
+                    return redirect('negotiator/account');
+                }
             }
 
             $user->password  = bcrypt($input['password']);
+            $user->default_password = 0;
         }
 
         $user->name  = $input['fullname'];
@@ -109,7 +119,15 @@ class AccountController extends Controller
         Session::flash('message', 'Account successfully updated!'); 
         Session::flash('alert-class', 'alert-success');
 
-        return redirect('admin/account');
+        
+        if(Auth::user()->role == 1)
+        {
+            return redirect('admin/account');
+        }
+        else
+        {
+            return redirect('negotiator/account');
+        }
     }
 
     /**

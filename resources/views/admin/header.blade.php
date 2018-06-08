@@ -112,10 +112,10 @@
                                     </li>
                                     <li class="divider">Admin Action</li>
                                     <li class="parent {{ Request::is('admin/user*') ? 'active' : '' }}">
-                                        <a href="#"><i class="icon mdi mdi-face"></i><span>User Management</span></a>
+                                        <a href="#"><i class="icon mdi mdi-face"></i><span>Negotiator</span></a>
                                         <ul class="sub-menu">
-                                            <li class="{{ Request::is('admin/user') ? 'active' : '' }}"><a href="{{ url('admin/user') }}">All User List</a></li>
-                                            <li class="{{ Request::is('admin/user/create') ? 'active' : '' }}"><a href="{{ url('admin/user/create') }}">Create New User</a></li>
+                                            <li class="{{ Request::is('admin/user') ? 'active' : '' }}"><a href="{{ url('admin/user') }}">All Negotiator List</a></li>
+                                            <li class="{{ Request::is('admin/user/create') ? 'active' : '' }}"><a href="{{ url('admin/user/create') }}">Create New Negotiator</a></li>
                                         </ul>
                                     </li>
                                     <li class="{{ Request::is('admin/annoucement') ? 'active' : '' }}">

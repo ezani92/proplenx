@@ -1,10 +1,14 @@
 @component('mail::message')
 # Hi {{ $submission->user->name }}
 
-Your submission [{{ $submission->form_code }}] has been update by administrator
+Your submission has been updated by administrator!
+
+- Form Code : {{ $submission->form_code }}
+- Older Status : {{ $old_status }}
+- Newest Status : {{ $new_status }}
 
 @component('mail::button', ['url' => url('/')])
-Login Now To Check Status
+Login Now To View The Submission
 @endcomponent
 
 

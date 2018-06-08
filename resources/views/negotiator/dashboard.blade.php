@@ -16,7 +16,7 @@
                                         <span aria-hidden="true" class="mdi mdi-close"></span>
                                     </button><span class="icon mdi mdi-alert-triangle"></span>
                                     <strong>Important!</strong>
-                                    You are still using default password on your account. It advisable for you to change for better security, Click <a href="#">HERE</a> to continue change your password.
+                                    You are still using default password on your account. It advisable for you to change for better security, Click <a href="{{ url('negotiator/account') }}">HERE</a> to continue change your password.
                                 </div>
                             @endif
 

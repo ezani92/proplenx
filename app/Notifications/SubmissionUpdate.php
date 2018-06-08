@@ -12,15 +12,19 @@ class SubmissionUpdate extends Notification implements ShouldQueue
     use Queueable;
 
      public $submission;
+     public $old_status;
+     public $new_status;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($submission)
+    public function __construct($submission,$old_status,$new_status)
     {
         $this->submission = $submission;
+        $this->old_status = $old_status;
+        $this->new_status = $new_status;
     }
 
     /**
@@ -42,7 +46,11 @@ class SubmissionUpdate extends Notification implements ShouldQueue
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)->markdown('mail.submission.update',['submission' => $this->submission]);
+        return (new MailMessage)->markdown('mail.submission.update',[
+            'submission' => $this->submission,
+            'old_status' => $this->old_status,
+            'new_status' => $this->new_status
+        ]);
     }
 
     /**
