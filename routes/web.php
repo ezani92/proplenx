@@ -71,6 +71,12 @@ Route::middleware(['isadmin'])->group(function () {
 
     Route::get('/admin/annoucement', 'AnnoucementController@index');
     Route::post('/admin/annoucement', 'AnnoucementController@store');
+
+    Route::get('/admin/download/coagent-invoice/{submission_id}', 'DownloadController@CoagentInvoice');
+    Route::get('/admin/download/commision-invoice/{submission_id}', 'DownloadController@CommisionInvoice');
+    Route::get('/admin/download/payment-voucher/{submission_id}', 'DownloadController@PaymentVoucher');
+    Route::get('/admin/download/stamp-duty/{submission_id}', 'DownloadController@StampDuty');
+    Route::get('/admin/download/official-receipt/{submission_id}', 'DownloadController@OfficialReceipt');
 });
 
 Route::middleware(['isnegotiator','isactive'])->group(function () {

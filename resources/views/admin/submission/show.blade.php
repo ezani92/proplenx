@@ -276,11 +276,10 @@
                                         <input type="hidden" name="submission_id" value="{{ $submission->id }}">
                                         <label>Status</label>
                                         <select class="form-control" name="status" id="status">
-                                            <option value="1">Pending</option>
-                                            <option value="2">Pending/ Outstanding CoNegotiator Invoice</option>
-                                            <option value="3">Pending/ Outstanding CoAgency Payment</option>
-                                            <option value="4">Pending/ Outstanding Referral Invoice</option>
-                                            <option value="5">Pending/ Outstanding Bank-in Slip</option>
+                                            <option value="2">Pending CoNegotiator Invoice</option>
+                                            <option value="3">Pending CoAgency Payment</option>
+                                            <option value="4">Pending Referral Invoice</option>
+                                            <option value="5">Pending Bank-in Slip</option>
                                             <option value="6">Payment from Landlord</option>
                                             <option value="7">Negotiator Refer Remark </option>
                                             <option value="8">Admin Refer Remark</option>
