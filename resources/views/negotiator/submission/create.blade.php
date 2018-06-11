@@ -836,7 +836,7 @@
 
                     $("#amount_payable_to_negotiator").val(amount_payable_to_negotiator);
 
-                    var balance_raw = amount_bank_in_to_proplex - pro_fee + stamp_duty + gst_by_landlord_vendor - balance_due_landlord_vendor;
+                    var balance_raw = amount_bank_in_to_proplex  - (pro_fee + stamp_duty + gst_by_landlord_vendor) - balance_due_landlord_vendor;
                     var balance = balance_raw.toFixed(2);
 
                     $("#balance").val(balance);
