@@ -138,7 +138,7 @@
                         <div class="col-md-6">
                             <div class="panel panel-default panel-border-color panel-border-color-primary">
                                 <div class="panel-body">
-                                    <h4>Landlord / Vendor Details</h4>
+                                    <h4>Landlord / Vendor Details <a href="{{ url('negotiator/submission/'.$submission->id.'/edit') }}" class="btn btn-info pull-right">Edit</a></h4>
                                     <br />
                                     <table id="submission-table" class="table table-striped table-bordered">
                                         <tbody>
@@ -166,7 +166,7 @@
                                     </table>
                                     <br />
                                     <hr />
-                                    <h4>Tenant / Purchaser Details</h4>
+                                    <h4>Tenant / Purchaser Details <a href="{{ url('negotiator/submission/'.$submission->id.'/edit') }}" class="btn btn-info pull-right">Edit</a></h4>
                                     <br />
                                     <table id="submission-table" class="table table-striped table-bordered">
                                         <tbody>
@@ -244,17 +244,45 @@
                     @endif
 
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-6">
                             <div class="panel panel-default panel-border-color panel-border-color-primary">
                                 <div class="panel-body">
                                     <h4>Documents</h4>
                                     <br />
                                     <ul>
                                         @foreach($submission->documents as $document)
-                                            <li><a target="_blank" href="{{ secure_asset('storage/'.$document->filename) }}">{{ $document->original_name }}</a></li>
+                                            <li><a target="_blank" href="{{ secure_asset('storage/'.$document->filename) }}">{{ $document->original_name }}</a> - {{ $document->doc_type }}</li>
                                         @endforeach
                                     </ul>
                                     <br />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="panel panel-default panel-border-color panel-border-color-primary">
+                                <div class="panel-body">
+                                    <h4>Logs</h4>
+                                    <br />
+                                    <table class="table table-bordered table-condensed">
+                                        <thead>
+                                            <tr>
+                                                <td><strong>Details</strong></td>
+                                                <td><strong>Remarks</strong></td>
+                                                <td><strong>Time</strong></td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach($logs as $log)
+                                            <tr>
+                                                <td>{{ $log->details }}</td>
+                                                <td>{{ $log->remarks }}</td>
+                                                <td>{{ $log->created_at->format('d M Y, h:i A') }}</td>
+                                            </tr>
+                                            @endforeach
+                                        </tbody>
+                                        
+                                    </table>
                                 </div>
                             </div>
                         </div>
@@ -309,11 +337,11 @@
                         </div>
                         <div class="modal-body">
                             <ul class="list-group">
-                                <li class="list-group-item">Coagent Invoice <code>Features Not Ready Yet</code></li>
-                                <li class="list-group-item">Commision Invoice<code>Features Not Ready Yet</code></li>
-                                <li class="list-group-item">Payment Voucher Commision<code>Features Not Ready Yet</code></li>
-                                <li class="list-group-item">Payment Voucher Stamp Dudy<code>Features Not Ready Yet</code></li>
-                                <li class="list-group-item">Receipt <code>Features Not Ready Yet</code></li>
+                                <li class="list-group-item">Coagent Invoice <a href="{{ url('negotiator/download/coagent-invoice/'.$submission->id) }}"><code>download</code></a></li>
+                                <li class="list-group-item">Commision Invoice <a href="{{ url('negotiator/download/commision-invoice/'.$submission->id) }}"><code>download</code></a></li>
+                                <li class="list-group-item">Payment Voucher Commision <a href="{{ url('negotiator/download/payment-voucher/'.$submission->id) }}"><code>download</code></a></li>
+                                <li class="list-group-item">Payment Voucher Stamp Dudy <a href="{{ url('negotiator/download/stamp-duty/'.$submission->id) }}"><code>download</code></a></li>
+                                <li class="list-group-item">Receipt <a href="{{ url('negotiator/download/official-receipt/'.$submission->id) }}"><code>download</code></a></li>
                             </ul>
                         </div>
                         <div class="modal-footer"></div>
