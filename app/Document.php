@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Document extends Model
 {
-    protected $fillable = ['submission_id', 'original_name', 'filename'];
+    protected $fillable = ['submission_id', 'original_name', 'filename','doc_type'];
  
     public function submission()
     {

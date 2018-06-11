@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Submission;
 use App\User;
 use App\Document;
+use App\Log;
 use Auth;
 use Session;
 use Illuminate\Http\Request;
@@ -303,9 +304,11 @@ class SubmissionController extends Controller
 
         $submission->save();
 
+
+
         if ($request->hasFile('documents'))
         {
-
+            $i = 0;
             foreach ($request->documents as $document)
             {
                 $filename = $document->store('documents');
@@ -314,8 +317,11 @@ class SubmissionController extends Controller
                 Document::create([
                     'submission_id' => $submission->id,
                     'original_name' => $original_name,
-                    'filename' => $filename
+                    'filename' => $filename,
+                    'doc_type' => $input['documents_type'][$i]
                 ]);
+
+                $i++;
             }
 
         }
@@ -342,13 +348,15 @@ class SubmissionController extends Controller
         $submission = Submission::find($submission_id);
         $auth = \Auth::user();
 
+        $logs = Log::where('submission_id',$submission_id)->latest()->get();
+
         if($auth->role == 1)
         {
-            return view('admin.submission.show',compact('submission'));
+            return view('admin.submission.show',compact('submission','logs'));
         }
         else if($auth->role == 2)
         {
-            return view('negotiator.submission.show',compact('submission'));
+            return view('negotiator.submission.show',compact('submission','logs'));
         }
 
         
@@ -432,7 +440,47 @@ class SubmissionController extends Controller
      */
     public function destroy(Submission $submission)
     {
-        //
+        
+    }
+
+    public function status(Request $request, $submision_id)
+    {
+        $input = $request->all();
+
+        $submission = Submission::find($submision_id);
+        $submission->status = $input['status'];
+
+        $status = self::getStatus($input['status']);
+
+        $log = new Log;
+        $log->submission_id = $submission->id;
+        $details = 'Update Status to '.$status.' ';
+
+        if($request->hasFile('document'))
+        {
+
+            $filename = $request->document->store('document');
+            $original_name = $request->document->getClientOriginalName();
+                
+            Document::create([
+                'submission_id' => $submission->id,
+                'original_name' => $original_name,
+                'filename' => $filename,
+                'doc_type' => $input['document_type']
+            ]);
+
+            $details .= "with file upload [".$input['document_type']."]";
+
+        }
+
+        $log->details = $details;
+        $log->remarks = $input['remarks'];
+        $log->save();
+
+        Session::flash('message', 'Submission status updated!'); 
+        Session::flash('alert-class', 'alert-success');
+
+        return redirect('negotiator/submission/'.$submission->id);
     }
 
     private function getStatus($id)
@@ -449,7 +497,7 @@ class SubmissionController extends Controller
             case "5":
                 return 'Pending Bank-in Slip';
             case "6":
-                return 'Payment from Landlord';
+                return 'Pending Payment from Landlord';
             case "7":
                 return 'Negotiator Refer Remark';
             case "8":

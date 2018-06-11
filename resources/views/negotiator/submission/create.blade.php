@@ -48,11 +48,11 @@
                                                         <label><strong>Status</strong></label>
                                                         <select class="form-control" name="status" required>
                                                             <option value="">Select</option>
-                                                            <option value="2">Pending/ Outstanding CoNegotiator Invoice</option>
-                                                            <option value="3">Pending/ Outstanding CoAgency Payment</option>
-                                                            <option value="4">Pending/ Outstanding Referral Invoice</option>
-                                                            <option value="5">Pending/ Outstanding Bank-in Slip</option>
-                                                            <option value="6">Payment from Landlord</option>\
+                                                            <option value="2">Pending CoNegotiator Invoice</option>
+                                                            <option value="3">Pending CoAgency Payment</option>
+                                                            <option value="4">Pending Referral Invoice</option>
+                                                            <option value="5">Pending Bank-in Slip</option>
+                                                            <option value="6">Pending Payment from Landlord</option>\
                                                             <option value="8">Admin Refer Remark</option>\
                                                             <option value="10">Ready for Commission Payment </option>\
                                                             <option value="12">Admin to Issue Invoice &/or Receipt </option>
@@ -186,13 +186,13 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group xs-pt-10">
                                                         <label><strong>Fullname / Company Name</strong></label>
-                                                        <input type="text" name="landlord_vendor_name" class="form-control" required>
+                                                        <input type="text" name="landlord_vendor_name" class="form-control" >
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group xs-pt-10">
                                                         <label><strong>NRIC / Company No</strong></label>
-                                                        <input type="text" name="landlord_vendor_ic_no" class="form-control" required>
+                                                        <input type="text" name="landlord_vendor_ic_no" class="form-control" >
                                                     </div>
                                                 </div>
                                             </div>
@@ -200,7 +200,7 @@
                                                 <div class="col-md-12">
                                                     <div class="form-group xs-pt-10">
                                                         <label><strong>Correspondence Address</strong></label>
-                                                        <textarea class="form-control" name="landlord_vendor_address" required></textarea>
+                                                        <textarea class="form-control" name="landlord_vendor_address" ></textarea>
                                                     </div>
                                                 </div>
                                             </div>
@@ -208,7 +208,7 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group xs-pt-10">
                                                         <label><strong>Bank Name</strong></label>
-                                                        <select class="form-control" name="landlord_vendor_bank_name" required>
+                                                        <select class="form-control" name="landlord_vendor_bank_name" >
                                                             <option value="AMBank">AMBank</option>
                                                             <option value="Affin Bank Berhad">Affin Bank Berhad</option>
                                                             <option value="Alliance Bank Malaysia Berhad">Alliance Bank Malaysia Berhad</option>
@@ -234,7 +234,7 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group xs-pt-10">
                                                         <label><strong>Bank Account No.</strong></label>
-                                                        <input type="text" name="landlord_vendor_acc_no" class="form-control" required>
+                                                        <input type="text" name="landlord_vendor_acc_no" class="form-control" >
                                                     </div>
                                                 </div>
                                             </div>
@@ -248,13 +248,13 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group xs-pt-10">
                                                         <label><strong>Fullname / Company Name</strong></label>
-                                                        <input type="text" name="tennant_purchaser_name" class="form-control" required>
+                                                        <input type="text" name="tennant_purchaser_name" class="form-control" >
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group xs-pt-10">
                                                         <label><strong>NRIC / Company No</strong></label>
-                                                        <input type="text" name="tennant_purchaser_ic_no" class="form-control" required>
+                                                        <input type="text" name="tennant_purchaser_ic_no" class="form-control" >
                                                     </div>
                                                 </div>
                                             </div>
@@ -262,7 +262,7 @@
                                                 <div class="col-md-12">
                                                     <div class="form-group xs-pt-10">
                                                         <label><strong>Address</strong></label>
-                                                        <textarea class="form-control" name="tennant_purchaser_address" required></textarea>
+                                                        <textarea class="form-control" name="tennant_purchaser_address" ></textarea>
                                                     </div>
                                                 </div>
                                             </div>
@@ -270,7 +270,7 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group xs-pt-10">
                                                         <label><strong>Bank Name</strong></label>
-                                                        <select class="form-control" name="tennant_purchaser_bank_name" required>
+                                                        <select class="form-control" name="tennant_purchaser_bank_name" >
                                                            <option value="AMBank">AMBank</option>
                                                             <option value="Affin Bank Berhad">Affin Bank Berhad</option>
                                                             <option value="Alliance Bank Malaysia Berhad">Alliance Bank Malaysia Berhad</option>
@@ -296,7 +296,7 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group xs-pt-10">
                                                         <label><strong>Bank Account No.</strong></label>
-                                                        <input type="text" name="tennant_purchaser_acc_no" class="form-control" required>
+                                                        <input type="text" name="tennant_purchaser_acc_no" class="form-control" >
                                                     </div>
                                                 </div>
                                             </div>
@@ -690,7 +690,17 @@
                                                 <div class="col-md-5">
                                                     <div class="form-group xs-pt-10">
                                                         <label>Type</label>
-                                                        <input type="text" name="documents_type[]" class="form-control" placeholder="Bank In Slip / Offer Letter / 3rd Party Invoice / Others" />
+                                                        <select class="form-control" name="documents_type[]" id="document_type">
+                                                            <option selected="selected" value="">Select</option>
+                                                            <option value="Bank in Slip">Bank in Slip</option>
+                                                            <option value="Booking Form">Booking Form</option>
+                                                            <option value="Stamped Agreement Relevant Pages">Stamped Agreement Relevant Pages</option>
+                                                            <option value="Third Party Invoice">Third Party Invoice</option>
+                                                            <option value="Coagency Nego Name Card">Coagency Nego Name Card</option>
+                                                            <option value="GST Bank In Slip">GST Bank In Slip</option>
+                                                            <option value="Coagency Letter">Coagency Letter</option>
+                                                            <option value="Others">Others</option>
+                                                        </select>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-2">
@@ -1156,7 +1166,7 @@
             {
                 var unix = Math.round(+new Date()/1000);
 
-                var html = '<div class="row remove'+ unix +'"> <div class="col-md-5"> <div class="form-group xs-pt-10"> <label>Document</label> <input type="file" name="documents[]" class="form-control" /> </div> </div> <div class="col-md-5"> <div class="form-group xs-pt-10"> <label>Type</label> <input type="text" name="documents_type[]" class="form-control" placeholder="Bank In Slip / Offer Letter / 3rd Party Invoice / Others" /> </div> </div> <div class="col-md-2"> <label></label><br /><br /> <button type="button" class="btn btn-xl btn-success" onclick="addDoc('+ unix +');">&nbsp;<i class="mdi mdi-plus"></i>&nbsp;</button> <button type="button" class="btn btn-xl btn-danger" onclick="removeDoc('+ unix +');">&nbsp;<i class="mdi mdi-minus"></i>&nbsp;</button></div> </div>';
+                var html = '<div class="row remove'+ unix +'"> <div class="col-md-5"> <div class="form-group xs-pt-10"> <label>Document</label> <input type="file" name="documents[]" class="form-control" /> </div> </div> <div class="col-md-5"> <div class="form-group xs-pt-10"> <label>Type</label> <select class="form-control" name="documents_type[]" id="document_type"> <option selected="selected" value="">Select</option> <option value="Bank in Slip">Bank in Slip</option> <option value="Booking Form">Booking Form</option> <option value="Stamped Agreement Relevant Pages">Stamped Agreement Relevant Pages</option> <option value="Third Party Invoice">Third Party Invoice</option> <option value="Coagency Nego Name Card">Coagency Nego Name Card</option> <option value="GST Bank In Slip">GST Bank In Slip</option> <option value="Coagency Letter">Coagency Letter</option> <option value="Others">Others</option> </select> </div> </div> <div class="col-md-2"> <label></label><br /><br /> <button type="button" class="btn btn-xl btn-success" onclick="addDoc('+ unix +');">&nbsp;<i class="mdi mdi-plus"></i>&nbsp;</button> <button type="button" class="btn btn-xl btn-danger" onclick="removeDoc('+ unix +');">&nbsp;<i class="mdi mdi-minus"></i>&nbsp;</button></div> </div>';
 
                 $(".document_lists").append(html);
             }

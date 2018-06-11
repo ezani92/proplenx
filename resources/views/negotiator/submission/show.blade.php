@@ -138,7 +138,7 @@
                         <div class="col-md-6">
                             <div class="panel panel-default panel-border-color panel-border-color-primary">
                                 <div class="panel-body">
-                                    <h4>Landlord / Vendor Details <a href="{{ url('negotiator/submission/1/edit') }}" class="btn btn-info pull-right">Edit</a></h4>
+                                    <h4>Landlord / Vendor Details <a href="{{ url('negotiator/submission/'.$submission->id.'/edit') }}" class="btn btn-info pull-right">Edit</a></h4>
                                     <br />
                                     <table id="submission-table" class="table table-striped table-bordered">
                                         <tbody>
@@ -166,7 +166,7 @@
                                     </table>
                                     <br />
                                     <hr />
-                                    <h4>Tenant / Purchaser Details <a href="{{ url('negotiator/submission/1/edit') }}" class="btn btn-info pull-right">Edit</a></h4>
+                                    <h4>Tenant / Purchaser Details <a href="{{ url('negotiator/submission/'.$submission->id.'/edit') }}" class="btn btn-info pull-right">Edit</a></h4>
                                     <br />
                                     <table id="submission-table" class="table table-striped table-bordered">
                                         <tbody>
@@ -244,17 +244,45 @@
                     @endif
 
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-6">
                             <div class="panel panel-default panel-border-color panel-border-color-primary">
                                 <div class="panel-body">
                                     <h4>Documents</h4>
                                     <br />
                                     <ul>
                                         @foreach($submission->documents as $document)
-                                            <li><a target="_blank" href="{{ secure_asset('storage/'.$document->filename) }}">{{ $document->original_name }}</a></li>
+                                            <li><a target="_blank" href="{{ secure_asset('storage/'.$document->filename) }}">{{ $document->original_name }}</a> - {{ $document->doc_type }}</li>
                                         @endforeach
                                     </ul>
                                     <br />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="panel panel-default panel-border-color panel-border-color-primary">
+                                <div class="panel-body">
+                                    <h4>Logs</h4>
+                                    <br />
+                                    <table class="table table-bordered table-condensed">
+                                        <thead>
+                                            <tr>
+                                                <td><strong>Details</strong></td>
+                                                <td><strong>Remarks</strong></td>
+                                                <td><strong>Time</strong></td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach($logs as $log)
+                                            <tr>
+                                                <td>{{ $log->details }}</td>
+                                                <td>{{ $log->remarks }}</td>
+                                                <td>{{ $log->created_at->format('d M Y, h:i A') }}</td>
+                                            </tr>
+                                            @endforeach
+                                        </tbody>
+                                        
+                                    </table>
                                 </div>
                             </div>
                         </div>
@@ -270,7 +298,8 @@
                         </div>
                         <div class="modal-body">
                             <div class="">
-                                <form>
+                                <form method="post" action="{{ url('negotiator/submission/'.$submission->id.'/status') }}" enctype="multipart/form-data">
+                                    @csrf
                                     <div class="form-group">
                                         <label>Status</label>
                                         <select class="form-control" name="status" id="status">
@@ -293,9 +322,24 @@
                                         <input type="file" class="form-control" name="document">
                                     </div>
                                     <div class="form-group">
-                                        <label>Remarks</label>
-                                        <textarea class="form-control"></textarea>
+                                        <label>Document Type</label>
+                                        <select class="form-control" name="document_type" id="document_type">
+                                            <option selected="selected" value="">Select</option>
+                                            <option value="Bank in Slip">Bank in Slip</option>
+                                            <option value="Booking Form">Booking Form</option>
+                                            <option value="Stamped Agreement Relevant Pages">Stamped Agreement Relevant Pages</option>
+                                            <option value="Third Party Invoice">Third Party Invoice</option>
+                                            <option value="Coagency Nego Name Card">Coagency Nego Name Card</option>
+                                            <option value="GST Bank In Slip">GST Bank In Slip</option>
+                                            <option value="Coagency Letter">Coagency Letter</option>
+                                            <option value="Others">Others</option>
+                                        </select>
                                     </div>
+                                    <div class="form-group">
+                                        <label>Remarks</label>
+                                        <textarea class="form-control" name="remarks"></textarea>
+                                    </div>
+                                    <button class="btn btn-info btn-block">Update Status</button>
                                 </form>
                             </div>
                         </div>
@@ -311,11 +355,11 @@
                         </div>
                         <div class="modal-body">
                             <ul class="list-group">
-                                <li class="list-group-item">Coagent Invoice <code>Features Not Ready Yet</code></li>
-                                <li class="list-group-item">Commision Invoice<code>Features Not Ready Yet</code></li>
-                                <li class="list-group-item">Payment Voucher Commision<code>Features Not Ready Yet</code></li>
-                                <li class="list-group-item">Payment Voucher Stamp Dudy<code>Features Not Ready Yet</code></li>
-                                <li class="list-group-item">Receipt <code>Features Not Ready Yet</code></li>
+                                <li class="list-group-item">Coagent Invoice <a href="{{ url('negotiator/download/coagent-invoice/'.$submission->id) }}"><code>download</code></a></li>
+                                <li class="list-group-item">Commision Invoice <a href="{{ url('negotiator/download/commision-invoice/'.$submission->id) }}"><code>download</code></a></li>
+                                <li class="list-group-item">Payment Voucher Commision <a href="{{ url('negotiator/download/payment-voucher/'.$submission->id) }}"><code>download</code></a></li>
+                                <li class="list-group-item">Payment Voucher Stamp Dudy <a href="{{ url('negotiator/download/stamp-duty/'.$submission->id) }}"><code>download</code></a></li>
+                                <li class="list-group-item">Receipt <a href="{{ url('negotiator/download/official-receipt/'.$submission->id) }}"><code>download</code></a></li>
                             </ul>
                         </div>
                         <div class="modal-footer"></div>

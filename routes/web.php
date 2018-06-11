@@ -84,6 +84,7 @@ Route::middleware(['isnegotiator','isactive'])->group(function () {
     Route::get('/negotiator/submission/{submission_id}', 'SubmissionController@show');
     Route::get('/negotiator/submission/{submission_id}/edit', 'SubmissionController@edit');
     Route::patch('/negotiator/submission/{submission_id}/update', 'SubmissionController@patch');
+    Route::post('/negotiator/submission/{submission_id}/status', 'SubmissionController@status');
 
     Route::get('/negotiator/report', 'ReportController@negotiator');
     Route::get('/negotiator/report/export', 'ReportController@exportNegotiator');
@@ -99,6 +100,12 @@ Route::middleware(['isnegotiator','isactive'])->group(function () {
 
     Route::get('/negotiator/eform/offer-to-rent', 'EformController@offerToRent');
     Route::post('/negotiator/eform/offer-to-rent', 'EformController@CreateofferToRent');
+
+    Route::get('/negotiator/download/coagent-invoice/{submission_id}', 'DownloadController@CoagentInvoice');
+    Route::get('/negotiator/download/commision-invoice/{submission_id}', 'DownloadController@CommisionInvoice');
+    Route::get('/negotiator/download/payment-voucher/{submission_id}', 'DownloadController@PaymentVoucher');
+    Route::get('/negotiator/download/stamp-duty/{submission_id}', 'DownloadController@StampDuty');
+    Route::get('/negotiator/download/official-receipt/{submission_id}', 'DownloadController@OfficialReceipt');
 
 
     

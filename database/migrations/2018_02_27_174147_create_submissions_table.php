@@ -35,17 +35,17 @@ class CreateSubmissionsTable extends Migration
             $table->decimal('amount_payable_to_negotiator', 8, 2);
             $table->decimal('balance', 8, 2);
 
-            $table->string('landlord_vendor_name');
-            $table->string('landlord_vendor_ic_no');
-            $table->text('landlord_vendor_address');
-            $table->string('landlord_vendor_bank_name');
-            $table->string('landlord_vendor_acc_no');
+            $table->string('landlord_vendor_name')->nullable();
+            $table->string('landlord_vendor_ic_no')->nullable();
+            $table->text('landlord_vendor_address')->nullable();
+            $table->string('landlord_vendor_bank_name')->nullable();
+            $table->string('landlord_vendor_acc_no')->nullable();
 
-            $table->string('tennant_purchaser_name');
-            $table->string('tennant_purchaser_ic_no');
-            $table->text('tennant_purchaser_address');
-            $table->string('tennant_purchaser_bank_name');
-            $table->string('tennant_purchaser_acc_no');
+            $table->string('tennant_purchaser_name')->nullable();
+            $table->string('tennant_purchaser_ic_no')->nullable();
+            $table->text('tennant_purchaser_address')->nullable();
+            $table->string('tennant_purchaser_bank_name')->nullable();
+            $table->string('tennant_purchaser_acc_no')->nullable();
 
             $table->integer('coagent_id')->nullable();
             $table->integer('coagent_portion_type')->nullable();
