@@ -171,7 +171,7 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group xs-pt-10">
                                                         <label><strong>Balance (RM)</strong>
-                                                            <code>[BankIn Amount - (Professional Fees + Stamp Duty or Other Reimbursement Fees + GST Tax) - Balance Payment to Client]</code></label>
+                                                            <code>[BankIn Amount - (Professional Fees + Stamp Duty or Other Reimbursement Fees + GST Tax) - Balance Due to Landlord / Vendor]</code></label>
                                                         <input type="text" tep="0.01" id="balance" name="balance" class="form-control" readonly="true">
                                                     </div>
                                                 </div>
