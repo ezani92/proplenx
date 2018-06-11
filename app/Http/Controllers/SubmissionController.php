@@ -273,11 +273,11 @@ class SubmissionController extends Controller
         else if($input['co_agency'] == 4)
         {
             $submission->coagent_company_name_2 = $input['coagent_company_name_2'];
+            $submission->coagent_company_email_2 = $input['coagent_company_email_2'];
             $submission->proplenx_portion_type_2 = $input['proplenx_portion_type_2'];
             $submission->proplenx_portion_value_2 = $input['proplenx_portion_value_2'];
-            $submission->coagent_company_bank_name_2 = $input['coagent_company_bank_name_2'];
-            $submission->coagent_company_bank_acc_no_2 = $input['coagent_company_bank_acc_no_2'];
-            $submission->total_payable_to_coagent_2 = $input['total_payable_to_coagent_2'];
+            $submission->coagent_company_gst_by_landlord_2 = $input['coagent_company_gst_by_landlord_2'];
+            $submission->coagent_company_total_amount_to_invoice_2 = $input['coagent_company_total_amount_to_invoice_2'];
         }
 
         else if($input['co_agency'] == 5)
