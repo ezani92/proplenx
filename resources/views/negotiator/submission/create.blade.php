@@ -345,7 +345,16 @@
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-md-12">
+                                                <div class="col-md-6">
+                                                    <div class="form-group xs-pt-10">
+                                                        <label><strong>GST Percentage</strong></label>
+                                                        <select class="form-control" name="coagent_gst_by_landlord_percentage" id="coagent_gst_by_landlord_percentage">
+                                                            <option value="0">0 %</option>
+                                                            <option value="0.06">6 %</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
                                                     <div class="form-group xs-pt-10">
                                                         <label><strong>GST by Landlord/ Vendor</strong>
                                                             <code>[6% x CoAgent Portion]</code></label>
@@ -483,10 +492,21 @@
                                                 </div>
                                             </div>
                                             <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group xs-pt-10">
+                                                        <label><strong>GST Percentage</strong></label>
+                                                        <select class="form-control" name="coagent_company_gst_percentage" id="coagent_company_gst_percentage">
+                                                            <option value="0">0 %</option>
+                                                            <option value="0.06">6 %</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group xs-pt-10">
                                                         <label><strong>GST by Landlord/ Vendor</strong>
-                                                            <code>[6% x CoAgent Portion]</code></label>
+                                                            <code>[GST x CoAgent Portion]</code></label>
                                                         <input type="text" name="coagent_company_gst_by_landlord_2" id="coagent_company_gst_by_landlord_2" class="form-control" readonly="true">
                                                     </div>
                                                 </div>
@@ -564,10 +584,21 @@
                                                 </div>
                                             </div>
                                             <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group xs-pt-10">
+                                                        <label><strong>GST Percentage</strong></label>
+                                                        <select class="form-control" name="internal_referrel_gst_percentage" id="internal_referrel_gst_percentage">
+                                                            <option value="0">0 %</option>
+                                                            <option value="0.06">6 %</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group xs-pt-10">
                                                         <label><strong>GST by Referral (if any)</strong>
-                                                            <code>[6% x Referral Portion]</code></label>
+                                                            <code>[GST x Referral Portion]</code></label>
                                                         <input type="text" name="internal_referrel_gst" id="internal_referrel_gst" class="form-control" readonly="true">
                                                     </div>
                                                 </div>
@@ -659,10 +690,21 @@
                                                 </div>
                                             </div>
                                             <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group xs-pt-10">
+                                                        <label><strong>GST Percentage</strong></label>
+                                                        <select class="form-control" name="external_referrel_gst_percentage" id="external_referrel_gst_percentage">
+                                                            <option value="0">0 %</option>
+                                                            <option value="0.06">6 %</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group xs-pt-10">
                                                         <label><strong>GST by Referral (if any)</strong>
-                                                            <code>[6% x Referral Portion]</code></label>
+                                                            <code>[GST x Referral Portion]</code></label>
                                                         <input type="text" name="external_referrel_gst" id="external_referrel_gst" class="form-control" readonly="true">
                                                     </div>
                                                 </div>
@@ -872,12 +914,14 @@
 
                     var coagent_portion_type = $("#coagent_portion_type").val();
                     var coagent_portion_value = parseFloat(value);
+                    var coagent_gst_by_landlord_percentage = parseFloat($("#coagent_gst_by_landlord_percentage").val());
                     // var z_value_1 = $("#z_value_1").val();
 
                     if(coagent_portion_type == 1)
                     {
-                        var coagent_gst_by_landlord_raw = coagent_portion_value * 0.06;
-                        var coagent_gst_by_landlord = coagent_gst_by_landlord_raw.toFixed(2)
+                        var coagent_gst_by_landlord_raw = coagent_portion_value * coagent_gst_by_landlord_percentage;
+                        var coagent_gst_by_landlord = coagent_gst_by_landlord_raw.toFixed(2);
+
 
                         $("#coagent_portion_amount").val(coagent_portion_value);
                         $("#coagent_gst_by_landlord").val(coagent_gst_by_landlord);
@@ -889,7 +933,7 @@
                         var coagent_portion_amount_raw = pro_fee * coagent_portion_value / 100;
                         var coagent_portion_amount = coagent_portion_amount_raw.toFixed(2);
 
-                        var coagent_gst_by_landlord_raw = coagent_portion_amount * 0.06;
+                        var coagent_gst_by_landlord_raw = coagent_portion_amount * coagent_gst_by_landlord_percentage;
                         var coagent_gst_by_landlord = coagent_gst_by_landlord_raw.toFixed(2);
 
                         $("#coagent_portion_amount").val(coagent_portion_amount);
@@ -907,6 +951,37 @@
             }
 
             $("#coagent_portion_value").typeWatch( options_coagent_portion_value );
+            $("#coagent_gst_by_landlord_percentage").on("change", function(){
+                var coagent_portion_type = $("#coagent_portion_type").val();
+                    var coagent_portion_value = parseFloat($("#coagent_portion_value").val());
+                    var coagent_gst_by_landlord_percentage = parseFloat($("#coagent_gst_by_landlord_percentage").val());
+                    // var z_value_1 = $("#z_value_1").val();
+
+                    if(coagent_portion_type == 1)
+                    {
+                        var coagent_gst_by_landlord_raw = coagent_portion_value * coagent_gst_by_landlord_percentage;
+                        var coagent_gst_by_landlord = coagent_gst_by_landlord_raw.toFixed(2);
+
+
+                        $("#coagent_portion_amount").val(coagent_portion_value);
+                        $("#coagent_gst_by_landlord").val(coagent_gst_by_landlord);
+                    }
+                    else if(coagent_portion_type == 2)
+                    {
+                        var pro_fee = parseFloat($("#pro_fee").val());
+
+                        var coagent_portion_amount_raw = pro_fee * coagent_portion_value / 100;
+                        var coagent_portion_amount = coagent_portion_amount_raw.toFixed(2);
+
+                        var coagent_gst_by_landlord_raw = coagent_portion_amount * coagent_gst_by_landlord_percentage;
+                        var coagent_gst_by_landlord = coagent_gst_by_landlord_raw.toFixed(2);
+
+                        $("#coagent_portion_amount").val(coagent_portion_amount);
+
+                        $("#coagent_gst_by_landlord").val(coagent_gst_by_landlord);
+
+                    }
+            });
             //
 
             // EXTERNAL COBROKE - PropL collected deposit, 3rd party to invoice PropL - DONE
@@ -1015,11 +1090,12 @@
 
                     var proplenx_portion_type_2 = $("#proplenx_portion_type_2").val();
                     var proplenx_portion_value_2 = parseFloat(value);
+                    var coagent_company_gst_percentage = parseFloat($("#coagent_company_gst_percentage").val());
 
                     if(proplenx_portion_type_2 == 1)
                     {
 
-                        var coagent_company_gst_by_landlord_2_raw = proplenx_portion_value_2 * 0.06;
+                        var coagent_company_gst_by_landlord_2_raw = proplenx_portion_value_2 * coagent_company_gst_percentage;
                         var coagent_company_gst_by_landlord_2 = coagent_company_gst_by_landlord_2_raw.toFixed(2);
 
                         var total_payable_to_coagent_raw = proplenx_portion_value_2 + coagent_company_gst_by_landlord_2_raw;
@@ -1036,7 +1112,7 @@
                         var coagent_portion_amount_2_raw = pro_fee * proplenx_portion_value_2 / 100;
                         var coagent_portion_amount_2 = coagent_portion_amount_2_raw.toFixed(2);
 
-                        var coagent_gst_by_landlord_2_raw = coagent_portion_amount_2 * 0.06;
+                        var coagent_gst_by_landlord_2_raw = coagent_portion_amount_2 * coagent_company_gst_percentage;
                         var coagent_gst_by_landlord_2 = coagent_gst_by_landlord_2_raw.toFixed(2);
 
                         var total_payable_to_coagent_raw = coagent_portion_amount_2_raw + coagent_gst_by_landlord_2_raw;
@@ -1056,6 +1132,43 @@
             }
 
             $("#proplenx_portion_value_2").typeWatch( options_proplenx_portion_value_2 );
+            $("#coagent_company_gst_percentage").on("change", function(){
+
+                    var proplenx_portion_type_2 = $("#proplenx_portion_type_2").val();
+                    var proplenx_portion_value_2 = parseFloat($("#proplenx_portion_value_2").val());
+                    var coagent_company_gst_percentage = parseFloat($("#coagent_company_gst_percentage").val());
+
+                    if(proplenx_portion_type_2 == 1)
+                    {
+
+                        var coagent_company_gst_by_landlord_2_raw = proplenx_portion_value_2 * coagent_company_gst_percentage;
+                        var coagent_company_gst_by_landlord_2 = coagent_company_gst_by_landlord_2_raw.toFixed(2);
+
+                        var total_payable_to_coagent_raw = proplenx_portion_value_2 + coagent_company_gst_by_landlord_2_raw;
+                        var total_payable_to_coagent = total_payable_to_coagent_raw.toFixed(2);
+
+                        $("#coagent_company_gst_by_landlord_2").val(coagent_company_gst_by_landlord_2);
+                        $("#coagent_company_total_amount_to_invoice_2").val(total_payable_to_coagent); 
+
+                    }
+                    else if(proplenx_portion_type_2 == 2)
+                    {
+                        var pro_fee = parseFloat($("#pro_fee").val());
+
+                        var coagent_portion_amount_2_raw = pro_fee * proplenx_portion_value_2 / 100;
+                        var coagent_portion_amount_2 = coagent_portion_amount_2_raw.toFixed(2);
+
+                        var coagent_gst_by_landlord_2_raw = coagent_portion_amount_2 * coagent_company_gst_percentage;
+                        var coagent_gst_by_landlord_2 = coagent_gst_by_landlord_2_raw.toFixed(2);
+
+                        var total_payable_to_coagent_raw = coagent_portion_amount_2_raw + coagent_gst_by_landlord_2_raw;
+                        var total_payable_to_coagent = total_payable_to_coagent_raw.toFixed(2);
+
+                        $("#coagent_company_gst_by_landlord_2").val(coagent_gst_by_landlord_2);
+                        $("#coagent_company_total_amount_to_invoice_2").val(total_payable_to_coagent); 
+
+                    }
+            });
 
             //
 
@@ -1066,11 +1179,12 @@
 
                     var internal_referrel_portion_type = $("#internal_referrel_portion_type").val();
                     var internal_referrel_portion_value = parseFloat(value);
+                    var internal_referrel_gst_percentage = parseFloat($("#internal_referrel_gst_percentage").val());
 
                     if(internal_referrel_portion_type == 1)
                     {
 
-                        var internal_referrel_gst_raw = internal_referrel_portion_value * 0.06;
+                        var internal_referrel_gst_raw = internal_referrel_portion_value * internal_referrel_gst_percentage;
                         var internal_referrel_gst = internal_referrel_gst_raw.toFixed(2);
 
                         var internal_referrel_total_paid_raw = internal_referrel_portion_value + internal_referrel_gst_raw;
@@ -1087,7 +1201,7 @@
                         var internal_referrel_amount_2_raw = pro_fee * internal_referrel_portion_value / 100;
                         var internal_referrel_amount_2 = internal_referrel_amount_2_raw.toFixed(2);
 
-                        var internal_referrel_gst_raw = internal_referrel_amount_2_raw * 0.06;
+                        var internal_referrel_gst_raw = internal_referrel_amount_2_raw * internal_referrel_gst_percentage;
                         var internal_referrel_gst = internal_referrel_gst_raw.toFixed(2);
 
                         var internal_referrel_total_paid_raw = internal_referrel_amount_2_raw + internal_referrel_gst_raw;
@@ -1107,6 +1221,43 @@
             }
 
             $("#internal_referrel_portion_value").typeWatch( options_internal_referrel_portion_value );
+            $("#internal_referrel_gst_percentage").on("change", function(){
+
+                    var internal_referrel_portion_type = $("#internal_referrel_portion_type").val();
+                    var internal_referrel_portion_value = parseFloat($("#internal_referrel_portion_value").val());
+                    var internal_referrel_gst_percentage = parseFloat($("#internal_referrel_gst_percentage").val());
+
+                    if(internal_referrel_portion_type == 1)
+                    {
+
+                        var internal_referrel_gst_raw = internal_referrel_portion_value * internal_referrel_gst_percentage;
+                        var internal_referrel_gst = internal_referrel_gst_raw.toFixed(2);
+
+                        var internal_referrel_total_paid_raw = internal_referrel_portion_value + internal_referrel_gst_raw;
+                        var internal_referrel_total_paid = internal_referrel_total_paid_raw.toFixed(2);
+
+                        $("#internal_referrel_gst").val(internal_referrel_gst);
+                        $("#internal_referrel_total_paid").val(internal_referrel_total_paid); 
+
+                    }
+                    else if(internal_referrel_portion_type == 2)
+                    {
+                        var pro_fee = parseFloat($("#pro_fee").val());
+
+                        var internal_referrel_amount_2_raw = pro_fee * internal_referrel_portion_value / 100;
+                        var internal_referrel_amount_2 = internal_referrel_amount_2_raw.toFixed(2);
+
+                        var internal_referrel_gst_raw = internal_referrel_amount_2_raw * internal_referrel_gst_percentage;
+                        var internal_referrel_gst = internal_referrel_gst_raw.toFixed(2);
+
+                        var internal_referrel_total_paid_raw = internal_referrel_amount_2_raw + internal_referrel_gst_raw;
+                        var internal_referrel_total_paid = internal_referrel_total_paid_raw.toFixed(2);
+
+                        $("#internal_referrel_gst").val(internal_referrel_gst);
+                        $("#internal_referrel_total_paid").val(internal_referrel_total_paid); 
+
+                    }
+            });
 
             //
 
@@ -1117,11 +1268,12 @@
 
                     var external_referrel_portion_type = $("#external_referrel_portion_type").val();
                     var external_referrel_portion_value = parseFloat(value);
+                    var external_referrel_gst_percentage = parseFloat($("#external_referrel_gst_percentage").val());
 
                     if(external_referrel_portion_type == 1)
                     {
 
-                        var external_referrel_gst_raw = external_referrel_portion_value * 0.06;
+                        var external_referrel_gst_raw = external_referrel_portion_value * external_referrel_gst_percentage;
                         var external_referrel_gst = external_referrel_gst_raw.toFixed(2);
 
                         var external_referrel_total_paid_raw = external_referrel_portion_value + external_referrel_gst_raw;
@@ -1138,7 +1290,7 @@
                         var external_referrel_amount_2_raw = pro_fee * external_referrel_portion_value / 100;
                         var external_referrel_amount_2 = external_referrel_amount_2_raw.toFixed(2);
 
-                        var external_referrel_gst_raw = external_referrel_amount_2_raw * 0.06;
+                        var external_referrel_gst_raw = external_referrel_amount_2_raw * external_referrel_gst_percentage;
                         var external_referrel_gst = external_referrel_gst_raw.toFixed(2);
 
                         var external_referrel_total_paid_raw = external_referrel_amount_2_raw + external_referrel_gst_raw;
@@ -1158,6 +1310,43 @@
             }
 
             $("#external_referrel_portion_value").typeWatch( options_external_referrel_portion_value );
+            $("#external_referrel_gst_percentage").on("change", function(){
+
+                    var external_referrel_portion_type = $("#external_referrel_portion_type").val();
+                    var external_referrel_portion_value = parseFloat($("#external_referrel_portion_value").val());
+                    var external_referrel_gst_percentage = parseFloat($("#external_referrel_gst_percentage").val());
+
+                    if(external_referrel_portion_type == 1)
+                    {
+
+                        var external_referrel_gst_raw = external_referrel_portion_value * external_referrel_gst_percentage;
+                        var external_referrel_gst = external_referrel_gst_raw.toFixed(2);
+
+                        var external_referrel_total_paid_raw = external_referrel_portion_value + external_referrel_gst_raw;
+                        var external_referrel_total_paid = external_referrel_total_paid_raw.toFixed(2);
+
+                        $("#external_referrel_gst").val(external_referrel_gst);
+                        $("#external_referrel_total_paid").val(external_referrel_total_paid); 
+
+                    }
+                    else if(external_referrel_portion_type == 2)
+                    {
+                        var pro_fee = parseFloat($("#pro_fee").val());
+
+                        var external_referrel_amount_2_raw = pro_fee * external_referrel_portion_value / 100;
+                        var external_referrel_amount_2 = external_referrel_amount_2_raw.toFixed(2);
+
+                        var external_referrel_gst_raw = external_referrel_amount_2_raw * external_referrel_gst_percentage;
+                        var external_referrel_gst = external_referrel_gst_raw.toFixed(2);
+
+                        var external_referrel_total_paid_raw = external_referrel_amount_2_raw + external_referrel_gst_raw;
+                        var external_referrel_total_paid = external_referrel_total_paid_raw.toFixed(2);
+
+                        $("#external_referrel_gst").val(external_referrel_gst);
+                        $("#external_referrel_total_paid").val(external_referrel_total_paid); 
+
+                    }
+            });
 
         });
         </script>
