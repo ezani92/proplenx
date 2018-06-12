@@ -337,11 +337,11 @@
                         </div>
                         <div class="modal-body">
                             <ul class="list-group">
-                                <li class="list-group-item">Coagent Invoice <a href="{{ url('negotiator/download/coagent-invoice/'.$submission->id) }}"><code>download</code></a></li>
-                                <li class="list-group-item">Commision Invoice <a href="{{ url('negotiator/download/commision-invoice/'.$submission->id) }}"><code>download</code></a></li>
-                                <li class="list-group-item">Payment Voucher Commision <a href="{{ url('negotiator/download/payment-voucher/'.$submission->id) }}"><code>download</code></a></li>
-                                <li class="list-group-item">Payment Voucher Stamp Dudy <a href="{{ url('negotiator/download/stamp-duty/'.$submission->id) }}"><code>download</code></a></li>
-                                <li class="list-group-item">Receipt <a href="{{ url('negotiator/download/official-receipt/'.$submission->id) }}"><code>download</code></a></li>
+                                <li class="list-group-item">Coagent Invoice <a href="{{ url('admin/download/coagent-invoice/'.$submission->id) }}"><code>download</code></a></li>
+                                <li class="list-group-item">Commision Invoice <a href="{{ url('admin/download/commision-invoice/'.$submission->id) }}"><code>download</code></a></li>
+                                <li class="list-group-item">Payment Voucher Commision <a href="{{ url('admin/download/payment-voucher/'.$submission->id) }}"><code>download</code></a></li>
+                                <li class="list-group-item">Payment Voucher Stamp Dudy <a href="{{ url('admin/download/stamp-duty/'.$submission->id) }}"><code>download</code></a></li>
+                                <li class="list-group-item">Receipt <a href="{{ url('admin/download/official-receipt/'.$submission->id) }}"><code>download</code></a></li>
                             </ul>
                         </div>
                         <div class="modal-footer"></div>
