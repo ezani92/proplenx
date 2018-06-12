@@ -674,7 +674,6 @@
                                         </div>
                                     </div>
                                     @csrf
-                                    <button type="submit" class="btn btn-block btn-default">Save Form</button>
                                     <button type="submit" class="btn btn-block btn-info">Submit Form</button>
 
 

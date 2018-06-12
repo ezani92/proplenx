@@ -138,7 +138,7 @@
                         <div class="col-md-6">
                             <div class="panel panel-default panel-border-color panel-border-color-primary">
                                 <div class="panel-body">
-                                    <h4>Landlord / Vendor Details <a href="{{ url('negotiator/submission/'.$submission->id.'/edit') }}" class="btn btn-info pull-right">Edit</a></h4>
+                                    <h4>Landlord / Vendor Details</h4>
                                     <br />
                                     <table id="submission-table" class="table table-striped table-bordered">
                                         <tbody>
@@ -166,7 +166,7 @@
                                     </table>
                                     <br />
                                     <hr />
-                                    <h4>Tenant / Purchaser Details <a href="{{ url('negotiator/submission/'.$submission->id.'/edit') }}" class="btn btn-info pull-right">Edit</a></h4>
+                                    <h4>Tenant / Purchaser Details</h4>
                                     <br />
                                     <table id="submission-table" class="table table-striped table-bordered">
                                         <tbody>
